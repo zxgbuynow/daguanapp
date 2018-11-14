@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		 <link href="../../css/style.css" rel="stylesheet" />
+		 <link rel="stylesheet" href="../../css/widgets.css" />
+		<style type="text/css">
+		footer {
+		    position: fixed;
+		    width: 100%;
+		    height: 50px;
+		    min-height: 50px;
+		    border-top: solid 1px #bbb;
+		    left: 0px;
+		    bottom: 0px;
+		    overflow: hidden;
+		    /*padding: 1px 50px 1px 10px;*/
+		    padding: 0px 50px;
+		    background-color: #fafafa;
+		}
+		.footer-left {
+		    position: absolute;
+		    width: 50px;
+		    height: 50px;
+		    left: 0px;
+		    bottom: 0px;
+		    text-align: center;
+		    vertical-align: middle;
+		    line-height: 100%;
+		    padding: 17px 4px;
+		}
+		.footer-right {
+		    position: absolute;
+		    width: 50px;
+		    height: 50px;
+		    right: 0px;
+		    bottom: 0px;
+		    text-align: center;
+		    vertical-align: middle;
+		    line-height: 100%;
+		    padding: 12px 5px;
+		    display: inline-block;
+		}
+		.footer-center {
+		    height: 100%;
+		    padding: 5px 0px;
+		}
+		.footer-center [class*=input] {
+		    width: 100%;
+		    height: 100%;
+		    border-radius: 5px;
+		}
+		.footer-center .input-text {
+		    background: #fff;
+		    border: solid 1px #ddd;
+		    padding: 10px !important;
+		    font-size: 16px !important;
+		    line-height: 18px !important;
+		    font-family: verdana !important;
+		    overflow: hidden;
+		}
+		
+		footer .mui-icon {
+		        color: #000;
+		}
+		footer .mui-icon:active {
+		    color: #007AFF !important;
+		}
+		.footer-right span{
+		    color: #0062CC;
+		    line-height: 30px;
+		}
+		html,
+		body {
+		    height: 100%;
+		    margin: 0px;
+		    padding: 0px;
+		    overflow: hidden;
+		    -webkit-touch-callout: none;
+		    -webkit-user-select: none;
+		}
+		.mui-content{
+		    height: 100%;
+		    padding: 44px 0px 50px 0px;
+		    overflow: auto;
+		    background-color: #eaeaea;
+		}
+		#msg-list {
+		    height: 100%;
+		    overflow: auto;
+		    -webkit-overflow-scrolling: touch;
+		}
+		.chat-history-date{ 
+		    display: block;
+		    padding-top: 5px;
+		    text-align: center;
+		    font-size: 12px;
+		}
+		.chat-receiver,.chat-sender{
+		    margin: 5px;
+		    clear:both;  
+		}
+		.chat-avatar img{
+		    width: 40px;
+		    height: 40px;
+		    border-radius: 50%;
+		}
+		.chat-receiver .chat-avatar{
+		    float: left;
+		}
+		.chat-sender .chat-avatar{
+		    float: right;
+		}
+		.chat-content{
+		    position: relative;
+		    max-width: 60%;
+		    min-height: 20px;
+		    margin: 0 10px 10px 10px;
+		    padding: 10px;
+		    font-size:15px;
+		    border-radius:7px; 
+		}
+		.chat-content img{
+		    width: 100%;
+		}
+		.chat-receiver .chat-content{
+		    float: left; 
+		    color: #383838; 
+		    background-color: #f5f5f5;
+		}
+		.chat-sender .chat-content{
+		    float:right;   
+		    color: #ffffff; 
+		    background-color: #15b5e9; 
+		}
+		.chat-triangle{
+		    position: absolute;
+		    top:6px;
+		    width:0px; 
+		    height:0px;        
+		    border-width:8px; 
+		    border-style:solid;   
+		}
+		.chat-receiver .chat-triangle{ 
+		    left:-16px;
+		    border-color:transparent #f5f5f5 transparent transparent;      
+		}
+		.chat-sender .chat-triangle{ 
+		    right:-16px;
+		    border-color:transparent transparent transparent #15b5e9;      
+		}
+		</style>
+	</head>
+
+	<body>
+		<header class="page-header">
+		  <i class="header-left icon-func bbc-icon bbc-icon-back mui-action-back"></i>
+	      <div class="header-title">咨询</div>
+	    </header>
+		<div class="mui-content">
+		    <div id="msg-list">
+		    		
+		    </div>
+		</div>
+		<footer>
+		    <div class="footer-left">
+		        <i id='msg-choose-img' class="mui-icon mui-icon-speech" style="font-size: 20px;"></i>
+		    </div>
+		    <div class="footer-center">
+		        <textarea id='msg-text' type="text" class='input-text'></textarea>
+		    </div>
+		    <div class="footer-right">
+		        <span id='msg-send-text'>发送</span>
+		    </div>
+		</footer>
+		<script src="../../js/zepto.js"></script>
+	    <script src="../../js/mui.min.js"></script>
+	    <script src="../../js/template.min.js"></script>
+	    <script src="../../config.js"></script>
+	    <script src="../../js/app.js"></script>
+	    <script src="../../js/im/webim.config.js"></script>
+	    <script src="../../js/im/strophe-1.2.8.js"></script>
+	    <script src="../../js/im/websdk-1.4.13.js"></script>
+	    <script src="../../js/im/webrtc-1.4.13.js"></script>
+	    <script src="../../js/im/adapter.js"></script>
+	    <script src="../../js/im/im.js"></script>
+	    <script id="msg-tpl" type="text/html">
+		    <div class="chat-<%= who %>">
+		           <div class="chat-avatar">
+		               <img src="<%= avatar %>">
+		           </div>
+		           <div class="chat-content">
+		               <div class="chat-triangle"></div>
+		                <span><%= msg %></span>
+		           </div>
+		       </div>
+		</script>
+		<script id="msg_list" type="text/html">
+			<% for(var i=0; i<list.length; i++) { %>
+		    		<div class="chat-<%= list[i].who %>">
+		           <div class="chat-avatar">
+		           		<% if(list[i].who=='sender'){%>
+		           			<img src="<%= list[i]['body'].senderAvatar %>">
+		           		<%}else{ %>	
+		               		<img src="<%= list[i]['body'].receiverAvatar %>">
+		               <%}%>
+		           </div>
+		           <div class="chat-content">
+		               <div class="chat-triangle"></div>
+		                <span><%= list[i]['body'].msg %></span>
+		           </div>
+		        </div>
+		     <% } %>
+		</script>
+	<script>
+		var usernm = null;
+		var userjid = null;
+		var state = app.getState();
+		var msgbox = null;
+		var sendava = null;
+		var receava = null;
+		/**
+		 * 消息初始化
+		 */
+		var msgInit = {
+		    el: '#msg-list', //消息容器
+		    senderAvatar: '../../img/widgets_02_19.png',  //发送者头像
+		    receiverAvatar: '../../img/widgets_02_19.png', //接收者头像
+		}
+		mui.plusReady(function(){
+			var jid = userjid = plus.webview.currentWebview().jid;
+			var username = usernm = plus.webview.currentWebview().username;
+			
+			if(username){
+				var param = {
+		          'method': config.apimethod.userinfo,
+		          'account': username,
+		          'source':config.source
+		      }
+		      $.dataRequest(param, function(rs) {
+		      	$('.header-title').html('与'+rs.nickname+'聊天')
+		      })
+//				$('.header-title').html('与'+username+'聊天')
+			}
+			//删除未读状态
+			if(plus.storage.getItem(state.account+"msgbox_"+username+'_flag')){
+				plus.storage.removeItem(state.account+"msgbox_"+username+'_flag');
+			}
+			
+			if(state.token){
+				var token = plus.storage.getItem('webim_'+state.account)
+				var options = {
+				    apiUrl: WebIM.config.apiURL,
+				    user: state.account,
+				    accessToken: token,
+				    appKey: WebIM.config.appkey
+				};
+				conn.open(options);
+				//初始化语音
+				var rtcCall = new WebIM.WebRTC.Call({
+				    connection: conn,
+				    mediaStreamConstaints: {
+				            audio: true,
+				            video: true
+				    },
+				
+				    listener: {
+				        onAcceptCall: function (from, options) {
+				            console.log('onAcceptCall::', 'from: ', from, 'options: ', options);
+				        },
+				        //通过streamType区分视频流和音频流，streamType: 'VOICE'(音频流)，'VIDEO'(视频流)
+				        onGotRemoteStream: function (stream, streamType) {
+				            console.log('onGotRemoteStream::', 'stream: ', stream, 'streamType: ', streamType);
+				            var video = document.getElementById('video');
+				            video.srcObject = stream;
+				        },
+				        onGotLocalStream: function (stream, streamType) {
+				            console.log('onGotLocalStream::', 'stream:', stream, 'streamType: ', streamType);
+				            var video = document.getElementById('localVideo');
+				            video.srcObject = stream;
+				        },
+				        onRinging: function (caller) {
+				            console.log('onRinging::', 'caller:', caller);
+				        },
+				        onTermCall: function (reason) {
+				            console.log('onTermCall::');
+				            console.log('reason:', reason);
+				        },
+				        onIceConnectionStateChange: function (iceState) {
+				            console.log('onIceConnectionStateChange::', 'iceState:', iceState);
+				        },
+				        onError: function (e) {
+				            log(e);
+				            mui.toast(e.message)
+				        }
+				     }
+				});
+				
+				// 视频呼叫对方
+				var webvcall = function (call, reciver) {
+				    rtcCall.caller = call;
+				    rtcCall.makeVideoCall(reciver);
+				};
+				// 音频呼叫对方
+				var webscall = function (call, reciver) {
+				    rtcCall.caller = call;
+				    rtcCall.makeVoiceCall(reciver);
+				};
+				// 关掉/拒绝视频
+				var endCall = function () {
+				    rtcCall.endCall();
+				}
+				// 接受对方呼叫
+				var acceptCall = function () {
+				    rtcCall.acceptCall();
+				}
+				//获得与该用户历史对话
+				msgbox = plus.storage.getItem(state.account+"msgbox_"+usernm);
+				if(msgbox){
+					var res = {
+						list:JSON.parse(msgbox)
+					}
+					var _html = template('msg_list', res);
+//				    console.log(JSON.stringify(res))
+//					console.log(_html)
+				    document.querySelector('#msg-list').innerHTML += _html;
+				}
+				
+			   	//获取消息头像
+				var users = [];
+				users.push(state.account);
+				users.push(usernm);
+				var userjoin = users.join(',');
+				log(userjoin);
+			    var param = {
+			          'method': config.apimethod.getAvatar,
+			          'users': userjoin,
+			          'source':config.source
+			   }
+			   $.dataRequest(param, function(rs) {
+			   		var rt = rs.data;
+//			   		console.log(JSON.stringify(rs))
+					if(rs[state.account]['avar']){
+			   			msgInit.senderAvatar = config.imgser+rs[state.account]['avar'];
+			   			log(msgInit.senderAvatar);
+			   		}
+			   		if(rs[usernm]['avar']){
+			   			msgInit.receiverAvatar = config.imgser+rs[usernm]['avar'];
+			   			log(msgInit.receiverAvatar);
+			   		}
+//			   		if(rs[state.account]){
+//			   			msgInit.senderAvatar = config.imgser+rs[state.account];
+//			   			log(msgInit.senderAvatar);
+//			   		}
+//			   		if(rs[usernm]){
+//			   			msgInit.receiverAvatar = config.imgser+rs[usernm];
+//			   			log(msgInit.receiverAvatar);
+//			   		}
+			   		setTimeout(function(){
+						conn.listen({ 
+							onTextMessage : function(message){
+							   console.log(JSON.stringify(message));
+						        var from = message.from;//消息的发送者
+						        var msg = message.data;//文本消息体    
+//						        mui.toast(msg);
+						        // 收到文本消息在页面展示
+						        if(from==usernm){
+						        		msgShow('receiver','text',msg, rs[usernm]['nickname']);
+						        		msgScrollTop();
+						        }else{
+						        		//TODO 处理缓存
+						        		setMsg('receiver','text',msg, rs[usernm]['nickname']);
+						        		//处理未读
+    									plus.storage.setItem(message.from+"msgbox_"+message.to+'_flag','yes');
+						        }
+						        
+							}
+						})
+						// 发送文本消息
+						ui.msgSendText.addEventListener('tap',function(){
+						    sendText();
+						})
+						document.getElementById("msg-choose-img").addEventListener('tap',function(){
+//							webscall(state.account, usernm);return false;
+							var xhr=new plus.net.XMLHttpRequest();
+							xhr.onreadystatechange=function(){
+							    switch ( xhr.readyState ) {
+									case 4:
+									if ( xhr.status == 200 ) {
+										mui.toast( "发起成功,请等待电话" );
+									} else {
+										mui.toast( "发起失败" );
+									}
+									break;
+								default :
+							
+							 	};
+							}
+							xhr.open( 'POST', 'http://103.20.248.251/perl/phone' );
+							xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+							xhr.send('cid='+state.account+'&did='+usernm+'&pbx=P000000001111&username=dgapp&password=hope9995');
+						})
+						// 发送文本
+						var sendText = function(){
+						    var msg = ui.msgText.value.replace(new RegExp('\n', 'gm'), '<br/>');
+						    var validateReg = /^\S+$/;
+						    // 获得键盘焦点
+						    msgTextFocus();
+						    if(validateReg.test(msg)){
+						        // 消息展示出来
+						        msgShow('sender','text',msg,rs[usernm]['nickname']);
+						        // 发送文本消息到环信服务器
+						        sendPrivateText(msg,usernm);
+	//					        conn.sendPrivateText({
+	//					            to: state.account, //用户登录名，SDK根据AppKey和domain组织jid，如easemob-demo#chatdemoui_**TEST**@easemob.com，中"to:TEST",下同
+	//					            msg: msg, //文本消息
+	//					            type: "chat"
+	//					            //ext :{"extmsg":"extends messages"}//用户自扩展的消息内容（群聊用法相同）
+	//					        });    
+						        // 清空文本框
+						        ui.msgText.value = '';
+						        // 恢复输入框高度(因为我们这里是50px，你可以写一个全局变量)
+						        ui.footer.style.height = '50px';
+						        // 保持输入状态
+						        mui.trigger(ui.msgText, 'input', null);
+						        // 这一句让内容滚动起来
+						        msgScrollTop();
+						    }else{
+						        mui.toast("文本消息不能为空");
+						    }
+						}
+						// 单聊发送文本消息
+						var sendPrivateText = function (massge,to) {
+							console.log(massge)
+							console.log(to)
+						    var id = conn.getUniqueId();                 // 生成本地消息id
+						    var msg = new WebIM.message('txt', id);      // 创建文本消息
+						    msg.set({
+						        msg: massge,                  // 消息内容
+						        to: to,                          // 接收消息对象（用户id）
+						        roomType: false,
+						        success: function (id, serverMsgId) {
+						            console.log('send private text Success');
+						        },
+						        fail: function(e){
+						            console.log("Send private text error");
+						        }
+						    });
+						    msg.body.chatType = 'singleChat';
+						    log(msg.body)
+						    conn.send(msg.body);
+						};
+					},1000)
+			   })
+				
+			}
+			
+			
+			
+			// UI控件对象
+			var ui = {
+			    content: mui('.mui-content'[0]),
+			    msgList: mui('#msg-list')[0],
+			    footer: mui('footer')[0],
+			    msgChooseImg: mui("#msg-choose-img")[0],
+			    msgText: mui('#msg-text')[0],
+			    msgSendText: mui('#msg-send-text')[0]
+			}
+			var setMsg = function(who,type,msg,nickname){
+				var msg = encodemsg(msg).replace(/\n/mg, ''); 
+				//查看是否有历史消息
+					msgbox = plus.storage.getItem(state.account+"msgbox_"+usernm);
+//					console.log('-------')
+//					console.log(JSON.stringify(msgbox));
+					if(msgbox){
+						msgbox = objToArray(JSON.parse(msgbox));
+//						console.log('---000----')
+//						console.log(JSON.stringify(msgbox));
+						msgbox.push({
+							who:who,
+							type:type,
+							nickname:nickname,
+							body:{
+						        senderAvatar: msgInit.senderAvatar,
+						        receiverAvatar: msgInit.receiverAvatar,
+						        msg: msg
+						    }
+						})
+					}else{
+						msgbox = [];
+						msgbox.push({
+							who:who,
+							type:type,
+							nickname:nickname,
+							body:{
+						        senderAvatar: msgInit.senderAvatar,
+						        receiverAvatar: msgInit.receiverAvatar,
+						        msg: msg
+						    }
+						}) 
+					}
+				    
+				    plus.storage.setItem(state.account+"msgbox_"+usernm,JSON.stringify(msgbox));
+			}
+			/**
+			 * @description 展示消息精简版
+			 * @param {String} who 消息来源,可选参数: {params} 'sender','receiver'
+			 * @param {Object} type 消息类型,可选参数: {params} 'text','url','img'
+			 * @param {Object} msg ('text'和'url'类型的msg是文字，img类型的msg是img地址)
+			 */
+			var msgShow = function(who,type,msg,nickname){
+				var msg = encodemsg(msg).replace(/\n/mg, ''); 
+//				msgbox = plus.storage.removeItem("msgbox");
+//				msgbox = plus.storage.removeItem("msgbox_"+usernm);
+				
+			   		//查看是否有历史消息
+					msgbox = plus.storage.getItem(state.account+"msgbox_"+usernm);
+//					console.log('-------')
+//					console.log(JSON.stringify(msgbox));
+					if(msgbox){
+						msgbox = objToArray(JSON.parse(msgbox));
+//						console.log('---000----')
+//						console.log(JSON.stringify(msgbox));
+						msgbox.push({
+							who:who,
+							type:type,
+							nickname:nickname,
+							body:{
+						        senderAvatar: msgInit.senderAvatar,
+						        receiverAvatar: msgInit.receiverAvatar,
+						        msg: msg
+						    }
+						})
+					}else{
+						msgbox = [];
+						msgbox.push({
+							who:who,
+							type:type,
+							nickname:nickname,
+							body:{
+						        senderAvatar: msgInit.senderAvatar,
+						        receiverAvatar: msgInit.receiverAvatar,
+						        msg: msg
+						    }
+						}) 
+					}
+				    appendMsg(who,type,{
+				        el: msgInit.el,
+				        senderAvatar: msgInit.senderAvatar,
+				        receiverAvatar: msgInit.receiverAvatar,
+				        msg: msg
+				    });
+				    plus.storage.setItem(state.account+"msgbox_"+usernm,JSON.stringify(msgbox));
+					 
+//			   })
+				
+			    
+//			    console.log(JSON.stringify(msgbox));
+			}
+			/**
+			 * @description 显示消息
+			 * @param {String} who 消息来源,可选参数: {params} 'sender','receiver'
+			 * @param {Object} type 消息类型,可选参数: {params} 'text','url','img'
+			 * @param {JSON} data 消息数据,可选参数: {params} {{el:'消息容器选择器'},{senderAvatar:'发送者头像地址'},{receiverAvatar:'接收者头像地址'},{msg:'消息内容'}}
+			 * ('text'和'url'类型的msg是文字，img类型的msg是img地址)
+			 */
+			var appendMsg = function(who,type,data){
+			    var html = template('msg-tpl', {
+			        who: who,
+			        type: type,
+			        avatar: who=='sender'?data.senderAvatar:data.receiverAvatar,
+			        msg: data.msg
+			    });
+			    console.log(html)
+			    document.querySelector(data.el).innerHTML += html;
+			}
+			
+			// 获得输入框键盘焦点
+			var msgTextFocus = function(){
+			    ui.msgText.focus();
+			    setTimeout(function() {
+			        ui.msgText.focus();
+			    }, 150);
+			}
+			// 强制弹出软键盘
+			var showKeyboard = function() {
+			    if (mui.os.ios) {
+			        var webView = plus.webview.currentWebview().nativeInstanceObject();
+			        webView.plusCallMethod({
+			            "setKeyboardDisplayRequiresUserAction": false
+			        });
+			    } else if(mui.os.android) {
+			        var Context = plus.android.importClass("android.content.Context");
+			        var InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
+			        var main = plus.android.runtimeMainActivity();
+			        var imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
+			        imm.toggleSoftInput(0,InputMethodManager.SHOW_FORCED);
+			    }
+			};
+			// 消息滚动
+			var msgScrollTop = function(){
+			    ui.msgList.scrollTop = ui.msgList.scrollHeight + ui.msgList.offsetHeight;
+			}
+			// 输入框监听事件
+			ui.msgText.addEventListener('input', function(event) {
+			    msgTextFocus();
+			    ui.footer.style.height = this.scrollHeight + 'px';
+			});
+			// 解决长按“发送”按钮，导致键盘关闭的问题；
+			ui.msgSendText.addEventListener('touchstart', function(event) {
+			    msgTextFocus();
+			    event.preventDefault();
+			});
+			ui.msgSendText.addEventListener('touchmove', function(event) {
+			    msgTextFocus();
+			    event.preventDefault();
+			});
+			
+			
+		})	
+		function objToArray(array) {
+		    var arr = []
+		    for (var i in array) {
+		        arr.push(array[i]); 
+		    }
+		    console.log(arr);
+		    return arr;
+		}
+		var old_back = mui.back;
+		mui.back = function() {
+			//会话列表过来的
+			if(userjid==1){
+				var pwv = plus.webview.getWebviewById('_www/view/msg/index.html');
+		  		pwv.reload();
+			}
+		  
+		  	 old_back();
+		}
+	</script>
+</body>
+
+</html>

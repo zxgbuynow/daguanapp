@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/widgets.css" />
+    <link rel="stylesheet" href="../../css/MCalendar.css" />
+    <style>
+    		.main{
+    			margin-right: 10px;
+    		}
+    		.mui-table-view .mui-media-object{
+		    max-width: 72px; 
+    			height: 72px;
+    		}
+    		.mui-media-text {
+    			color: #646464;
+    			font-size: 15px;
+    		}
+    		.mui-media-author { 
+    			font-size: 13px;
+    			margin-top: 5px;
+    		} 
+    		.mui-media-action{
+    			font-size: 13px;
+    		}
+    		.float-right{
+    			float: right;
+    		}
+    		.mui-icon .mui-badge-point{
+			    height: 10px;
+			    margin-left: -8px;
+    		}
+    		.cander-icon {
+    			    height: 3rem;
+			    color: #ea2329;
+			    margin-top: .5rem;
+			    margin-right: 1rem;
+			    font-size: 21px;
+
+    		}
+    		.mc-cell-catch{
+    			background-color: #3ab54a;
+    			border-radius: 30px;
+    		}
+    </style>
+  </head>
+
+  <body>
+    <header class="page-header">
+    	  <!--<i class="header-left icon-func bbc-icon bbc-icon-back mui-action-back"></i>-->	
+    	  <i id="all_clander" class="header-left txt-func action-webview" data-webview="_www/view/counsellor/list.html">所有日程</i>
+      <div class="header-title">工作台</div>
+      <!--<span>2018.3.25</span>-->
+      <i class=" mui-icon mui-icon-plus mui-pull-right cander-icon action-webview mui-hidden" data-webview="_www/view/counsellor/plus.html"></i>
+    </header>
+    <div class="container" id="container" style="margin-bottom: 50px;"> 
+       
+    </div> 
+    <nav class="mui-bar bbc-bar-tab">
+      <a class="bbc-tab-item "  data-webview="_www/view/index.html">
+        <span class="mui-icon bbc-icon bbc-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+      </a>
+      <a class="bbc-tab-item bbc-active" >
+        <span class="mui-icon bbc-icon bbc-icon-package"><span class="mui-badge mui-badge-danger mui-badge-point"></span></span>
+        <span class="mui-tab-label">工作台</span>
+      </a>
+      <a class="bbc-tab-item" data-webview="_www/view/clac/index.html">
+        <span class="mui-icon bbc-icon bbc-icon-moments"></span>
+        <span class="mui-tab-label">课程/活动</span>
+      </a>
+      <a class="bbc-tab-item" data-webview="_www/view/msg/index.html">
+        <span class="mui-icon bbc-icon bbc-icon-message"><span class="mui-badge mui-badge-danger mui-hidden" id="msg-count"></span></span>
+        <span class="mui-tab-label">消息</span>
+      </a>
+      <a class="bbc-tab-item" data-webview="_www/view/member/member.html">
+        <span class="mui-icon bbc-icon bbc-icon-user-empty"></span>
+        <span class="mui-tab-label">我的</span>
+      </a>
+    </nav>
+    
+    <script src="../../js/zepto.js"></script>
+    <script src="../../js/mui.min.js"></script>
+    <script src="../../js/template.min.js"></script>
+    <script src="../../config.js"></script>
+    <script src="../../js/app.js"></script>
+    <script src="../../js/MCalendar.js"></script>
+	<script type="text/html" id="calendar_list">
+		<% if(list != null){ %>
+			<ul class="mui-table-view calendar-list" style="background-color: #FFFFFF;">
+	        <% for(var i=0; i<list.length; i++) { %>
+			<li data-view="_www/view/counsellor/case.html" class="mui-table-view-cell go-case" data-status = "<%= list[i].status%>" data-cid = "<%= list[i].id%>" data-tid = "<%= list[i].tid%>" data-endtime = "<%= list[i].end_time%>">
+		        <span><%= list[i].title%></span>
+		        <% if(list[i].status==0){%>
+		        		<% if($getDateDiff(list[i].end_time)){%>
+		        			<span style="float: right;color: #646464;font-size: 12px;"><%= $getDateDiff(list[i].start_time)%></span>
+		        			<%}else{%>
+		        			<span style="float: right;color: #646464;font-size: 12px;">完成</span>
+		        		<%}%> 
+		        	<%}else{%>
+		        		<span style="float: right;color: #646464;font-size: 12px;">已提交案例</span>
+		        	<%}%>
+	           
+	        </li>
+	        <%}%>
+			</ul>
+        <%}%>
+	</script>
+    
+
+    <script type="text/javascript">
+      mui.init({
+        swipeBack: true //启用右滑关闭功能
+      });
+
+      mui.plusReady(function() {
+         test();
+      });
+	  function test(){
+			var today = mui.DateUtil.addDate(mui.DateUtil.getToday(),0);
+			var MC = mui("#container").MCalendar({date:today});
+			var state = app.getState();
+		  	var param = {
+	            'method': config.apimethod.getCurrentCander,
+	            'source':config.source,
+	            'account':state.token
+	       }
+				 
+	       $.dataRequest(param, function(rs) {
+					 log(rs)
+				if(rs&&rs.length>0){
+					var c = 0;
+					$(".mc-table-cell").each(function(el,m){
+						if(!$(m).attr('disabled')){
+							c++;
+						}
+						var i = el+1; 
+						if(rs.indexOf(c)>-1){
+							$(this).addClass('mc-cell-catch')
+						}
+					});
+				}
+		       
+	       })
+			
+//			$('#container').find('mc-table-cell').forEach(function(el, i){
+//				mui.toast('1')
+//				console.log(el.attr('mc-cell-index'));
+//	      	})
+			var myDate = new Date();
+			$(window).on('tap','.go-case', function() {
+				var webview = $(this).data('view');
+				var etime = $(this).data('endtime');
+				var tid = $(this).data('tid');
+				var cid = $(this).data('cid');
+				var status = $(this).data('status');
+				//判断如果已过时间，即完成，可跳转
+				var nowtm = Math.floor(Date.parse(new Date())/1000);
+				
+//				if(etime<nowtm){
+					if(status>0){
+						mui.toast('已提交案例');return false;
+					}
+					//
+					plus.nativeUI.confirm( "请选择?", function(e){
+						log(e.index)
+						if(e.index==0){
+							clicked(webview,{tid:tid,cid:cid})
+						}else{
+							if(e.index==-1){
+								return false;
+							}
+							
+							//取消预约
+							var param = {
+                                  'method': config.apimethod.cancleDate,
+                                  'cid': cid,
+                                  'source':config.source
+                            }
+                                $.dataRequest(param, function(rs) {
+                                	plus.webview.currentWebview().reload(true)
+                                }) 
+						}
+					},'操作',['去提交案例','取消预约']);
+					
+//				}
+			})
+			
+			//获得今日数据
+//			var state = app.getState();
+//	      	var param = {
+//	          'method': config.apimethod.calendatoday,
+//	          'account': state.token,
+//	          'day': Math.floor(Date.parse(new Date())/1000),
+//	          'source':config.source
+//	      	}
+//	      	log(param)
+//			$.dataRequest(param, function(rs) {
+//	        		var widgets = template('calendar_list', rs);
+//	            $("#container").append(widgets);
+//              mui('#container').scroll({
+//		          indicators: false
+//		        });
+//	        })
+
+		};
+		
+//		mui.plusReady(test)
+
+        
+      $('.bbc-tab-item').on('tap', function() {
+        var webview = $(this).data('webview');
+        if(webview) {
+          mui.openWindow({
+            url: webview,
+            id: webview,
+            createNew: false, //是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+            show: {
+              autoShow: true, //页面loaded事件发生后自动显示，默认为true
+              aniShow: 'none'
+            },
+            extras:{
+              refresh: true
+            },
+            waiting: {
+              autoShow: true //自动显示等待框，默认为true
+            }
+          });
+          var openw = plus.webview.getWebviewById(webview);
+          if(openw) {
+            mui.fire(openw,'refresh');
+          }
+        }
+      });
+    </script>
+  </body>
+
+</html>

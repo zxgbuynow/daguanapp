@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		 <link href="../../css/style.css" rel="stylesheet" />
+		 <link rel="stylesheet" href="../../css/widgets.css" />
+		<style>
+		
+    		.mui-table-view .mui-media-body {
+    			margin-top: 10px;
+    		}
+		</style>
+	</head>
+
+	<body>
+		<header class="page-header">
+		  <i class="header-left icon-func bbc-icon bbc-icon-back mui-action-back"></i>
+	    	  <i id="addfriend" class="header-right txt-func mui-hidden" data-webview="_www/view/counsellor/list.html">添加</i>
+	      <div class="header-title">通讯录</div>
+	    </header>
+	    <div class="container" id="container" style="margin-bottom: 50px;"> 
+	     	<div class="mui-icon mui-spinner"></div>
+	    </div>
+		
+		<script src="../../js/zepto.js"></script>
+	    <script src="../../js/mui.min.js"></script>
+	    <script src="../../js/template.min.js"></script>
+	    <script src="../../config.js"></script>
+	    <script src="../../js/app.js"></script>
+	    <script src="../../js/im/webim.config.js"></script>
+	    <script src="../../js/im/strophe-1.2.8.js"></script>
+	    <script src="../../js/im/websdk-1.4.13.js"></script>
+	    <script src="../../js/im/im.js"></script>
+	    <script type="text/html" id="friend_list">
+			 <section class="widgets-category-nav section-white">
+		        <div class="mui-table-view">
+		          <ul class="mui-table-view mui-table-view-chevron">
+		          	<% for(var i=0; i<list.length; i++) { %>
+					<li class="mui-table-view-cell mui-media action-webview" data-webview="_www/view/msg/chat.html" data-webparam = '{"jid":"<%= list[i].jid %>", "username":"<%= list[i].name %>" }'>
+						<img class="mui-media-object mui-pull-left" src="<%= list[i].avat %>">
+						<div class="mui-media-body">
+							<%= list[i].nickname %>
+						</div>
+					</li>
+					<%}%>
+				  </ul>		
+		        </div>
+		      </section>
+        </script>
+	    <script type="text/html" id="friend_list1">
+	    <section class="widgets-category-nav section-white">
+	    			<div class="mui-table-view">
+	    				<ul class="mui-table-view mui-table-view-chevron">
+	    					<% for(var i in list) { %>
+	    					
+	    		<li class="mui-table-view-cell mui-media action-webview" data-webview="_www/view/msg/chat.html" data-webparam = '{"jid":"1", "username":"<%= list[i].mobile %>" }'>
+	    			<img class="mui-media-object mui-pull-left" src="<%= list[i].avar %>">
+	    			<div class="mui-media-body">
+	    				<%= list[i].nickname %>
+	    			</div>
+	    		</li>
+	    		<%}%>
+	    		</ul>		
+	    			</div>
+	    		</section>
+	    	</script>
+		<script type="text/javascript" charset="utf-8">
+		mui.plusReady(function(){ 
+			var state = app.getState();
+			if(state.token){
+				var token = plus.storage.getItem('webim_'+state.account)
+				var options = {
+				    apiUrl: WebIM.config.apiURL,
+				    user: state.account,
+				    accessToken: token,
+				    appKey: WebIM.config.appkey
+				};
+				conn.open(options);
+				//api获取通讯录
+				var param = {
+							'method': config.apimethod.getUserList,
+							'account': state.account,
+							'source':config.source
+				}
+				log(param)
+				$.dataRequest(param, function(rs) {
+					var rt = {};
+					for(var i in rs){
+						if(rs[i].avar){
+							rs[i].avar = config.imgser+rs[i].avar
+						}else{
+							rs[i].avar = '../../img/widgets_02_19.png';
+						}
+						
+					}
+					if(rs){
+						rt = {
+							list :rs 
+						}
+					}
+					log(rt)
+					var widgets = template('friend_list', rt);
+					$('.container').append(widgets);
+					
+				})
+
+// 				setTimeout(function(){
+// 					//获取好友列表
+// 					conn.getRoster({
+// 			           success : function(roster) {
+// 			           		 var data = []; 
+// 			           		 var users = [];
+// 			                  // 获取当前登录人的好友列表
+// 			                  for ( var i in roster) {
+// 			                    var ros = roster[i]; //好友的对象
+// 			                    
+// 			                    if(ros.subscription=='both'){
+// 			                    		data.push(ros)
+// 			                    		users.push(ros.name)
+// 			                    }
+// 			                  	//ros.name为好友名称
+// 			                  }
+// //			                  console.log('hree')
+// //			                  console.log(JSON.stringify(ros))
+// 			                  if(data[0]!=undefined){
+// 			                  	 
+// 			                  	var res = {
+// 			                  		list:data
+// 			                  	}
+// 			                  	$('.container').html('')
+// 			                  		//获取消息头像
+// 									var userjoin = users.join(',');
+// //									log(userjoin);
+// 								    var param = {
+// 								          'method': config.apimethod.getAvatar,
+// 								          'users': userjoin,
+// 								          'source':config.source
+// 								   }
+// 								   $.dataRequest(param, function(rs) {
+// 								   		var avarList = [];
+// 								   		for (var i in res['list']) {
+// 								   			if(rs[res['list'][i]['name']]){
+// 								   				if(rs[res['list'][i]['name']]['avar']){
+// 								   					res['list'][i]['avat'] = config.imgser+rs[res['list'][i]['name']]['avar'];
+// 								   				}else{
+// 								   					res['list'][i]['avat'] = '../../img/widgets_02_19.png';
+// 								   				}
+// 								   				
+// 								   				if(rs[res['list'][i]['name']]['nickname']){
+// 								   					res['list'][i]['nickname'] = rs[res['list'][i]['name']]['nickname'];
+// 								   				}
+// 								   				avarList.push({
+// 								   					name:res['list'][i]['name'],
+// //								   					nickname:rs[res['list'][i]['name']]['nickname'],
+// 								   					avar:config.imgser+rs[res['list'][i]['name']]['avar']
+// 								   				})
+// 								   			}else{
+// 								   				res['list'][i]['avat'] = '../../img/widgets_02_19.png';
+// 								   				res['list'][i]['nickname'] =res['list'][i]['name'];
+// 								   				avarList.push({
+// 								   					name:res['list'][i]['name'],
+// //								   					nickname:res['list'][i]['name'],
+// 								   					avar:'../../img/widgets_02_19.png'
+// 								   				})
+// 								   			}
+// 								   			
+// 								   		}
+// //								   		log(res)
+// 								   		var widgets = template('friend_list', res);
+// //					                  	console.log(widgets) 
+// 		            						$('.container').append(widgets);
+// 		            						plus.storage.setItem("avarList",JSON.stringify(avarList));
+// 								   })
+// //			                  	var widgets = template('friend_list', res);
+// //			                  	console.log(widgets) 
+// //          						$('.container').append(widgets);
+// 			                  }else{
+// 			                  	$('.container').html('')
+// 			                  }
+// //			                  console.log(JSON.stringify(res))
+// 			           },
+// 			           fail: function(e){
+// 			           	console.log('12')
+// 			           		$('.container').html('')
+// 				            console.log(JSON.stringify(e))
+// 				       }
+// 			            
+// 			    });   
+// 			    
+// 			      //请求处理
+// //			      conn.listen({ 
+// //			      	onPresence: function ( message ) {alert(JSON.stringify(message))},
+// //			      	//收到联系人订阅请求的回调方法
+// //				    onPresence : function(message) {
+// //				    		alert('love')
+// //				        handlePresence(message);
+// //				    },
+// //				    onError: function (message) {
+// //			            alert('Error');
+// //			            console.log(JSON.stringify(message)); 
+// //			        }
+// //			      })
+// 			       
+// 				},2000)
+				// 添加好友
+				mui("#addfriend")[0].addEventListener('tap',function(e){
+				    e.detail.gesture.preventDefault();
+				    var btnArray = ['确定','取消'];
+				    mui.prompt('请输入你要添加的好友的用户名：', '手机号', '邀请好友', btnArray, function(e) {
+				        if (e.index == 0) {
+				            var user = e.value;
+				            conn.subscribe({
+				                to : user,
+				                message : "加个好友呗"
+				            });
+				            mui.toast('邀请发送成功！');
+				        } else {
+				            mui.toast('你取消了发送！');
+				        }
+				    });
+				})
+//				//好友申请
+//				var handlePresence = function(e) {
+//				    mui.toast(JSON.stringify(e));
+//				    var user = e.from;
+//				    //（发送者希望订阅接收者的出席信息）
+//				    if (e.type == 'subscribe') {
+//				        mui.confirm('有人要添加你为好友', '添加好友', ['确定','取消'], function(e){
+//				            if (e.index == 0) {
+//				                //同意添加好友操作的实现方法
+//				                conn.subscribed({
+//				                    to : user,
+//				                    message : "[resp:true]"
+//				                });
+//				                mui.toast('你同意添加好友请求');
+//				            } else {
+//				                //拒绝添加好友的方法处理
+//				                conn.unsubscribed({
+//				                    to : user,
+//				                    message : "rejectAddFriend"
+//				                });
+//				                mui.toast('你拒绝了添加好友');
+//				            }
+//				        })
+//				    }
+//				};
+				
+			}
+			
+		})
+		var old_back = mui.back;
+		mui.back = function() {
+		  var pwv = plus.webview.getWebviewById('_www/view/msg/index.html');
+		  pwv.reload();
+//		  setTimeout(function(){
+		  	 old_back();
+//		  },1000)
+		}
+			
+
+			
+		</script>
+	</body>
+
+</html>

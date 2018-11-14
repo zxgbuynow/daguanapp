@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+     
+      
+    </style>
+  </head>
+
+  <body>
+
+
+      <header class="home-header">
+        <i class="icon-func bbc-icon bbc-icon-back mui-action-back"></i>
+        <div class="main">
+          <form onsubmit="return false;">
+            <div class="mui-input-row header-search-form ">
+              <input type="search" class="header-search mui-input-clear " placeholder="寻找感兴趣的文章">
+            </div>
+          </form>
+        </div>
+      </header>
+      
+    
+    <div class="mui-content">
+
+    </div>
+    <script src="../../js/zepto.js"></script>
+    <script src="../../js/mui.min.js"></script>
+    <script src="../../js/template.min.js"></script>
+    <script src="../../config.js"></script>
+    <script src="../../js/app.js"></script>
+    <script>
+      mui.plusReady(function() {
+        var wv = plus.webview.currentWebview();
+        var keyword = wv.keyword;
+        if(keyword) {
+          $('input[type="search"]').val(keyword);
+        }
+
+        var contentWebview = null;
+        var hlist = localStorage.getItem('_history');
+        var form = $('input[type="search"]').parents('form');
+        var sinput = $('input[type="search"]');
+        $(form).submit(function() {
+          var search_val = $('input[type="search"]').val();
+          if(hlist != null) {
+            var list = hlist.split(",");
+          }
+          var flag = true;
+          if(search_val != '') {
+            if(hlist != null) {
+              for(var i = 0; i < list.length; i++) {
+                if(list[i] == search_val) {
+                  flag = false;
+                }
+              }
+            }
+            if(flag == true) {
+              if(hlist != null) {
+                hlist += (search_val + ',');
+                localStorage.setItem('_history', hlist);
+              } else {
+                localStorage.setItem('_history', search_val + ',');
+              }
+            }
+            if(contentWebview == null) {
+              contentWebview = plus.webview.currentWebview().children()[0];
+            }
+            mui.fire(contentWebview, 'getlist', {
+              'search_keywords': search_val
+            })
+            sinput.blur();
+          }
+        });
+        
+
+        mui.init({
+          swipeBack: false,
+          subpages: [{
+            url: '_www/view/artical/artical_list.html',
+            id: '_www/view/artical/artical_list.html',
+            styles: {
+              top: '45px',
+              bottom: '0px'
+            }
+          }]
+        });
+
+      });
+    </script>
+  </body>
+
+</html>

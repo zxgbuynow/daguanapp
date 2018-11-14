@@ -1,0 +1,1257 @@
+{
+  "index.html": {
+    "resources": [
+      "img/widgets_02_07.png",
+      "img/widgets_30.jpg",
+      "img/widgets_slider_03.jpg",
+      "img/widgets_02_11.png",
+      "img/widgets_02_09.png",
+      "img/widgets_26.jpg",
+      "img/widgets_49.gif",
+      "img/widgets_54.gif",
+      "js/mui.min.js",
+      "img/widgets_39.gif",
+      "img/widgets_slider_01.jpg",
+      "img/widgets_02_18.png",
+      "img/widgets_slider_02.jpg",
+      "img/widgets_28.jpg",
+      "img/widgets_02_19.png",
+      "img/widgets_53.gif",
+      "img/widgets_36.jpg",
+      "css/widgets.css",
+      "img/widgets_34.jpg",
+      "img/widgets_50.gif",
+      "img/widgets_57.gif",
+      "img/widgets_02_20.png",
+      "img/widgets_33.jpg",
+      "css/style.css",
+      "img/widgets_slider_04.jpg",
+      "img/widgets_45.gif",
+      "img/widgets_02_17.png",
+      "img/widgets_25.jpg",
+      "img/widgets_58.gif",
+      "img/widgets_46.gif",
+      "img/widgets_35.jpg",
+      "img/widgets_41.gif",
+      "img/widgets_02_05.png",
+      "img/logo.png",
+      "img/widgets_29.jpg",
+      "img/widgets_31.jpg",
+      "home.html",
+      "fonts/iconfonts.ttf",
+      "config.js",
+      "js/app.js",
+      "js/template.min.js",
+      "js/zepto.js",
+      "js/mipush.js",
+      "js/immersed.js"
+    ],
+    "refer": [
+      "home.html",
+      "member.html",
+      "cart.html",
+      "category.html",
+      "view/member/member.html",
+      "view/category/category.html"
+    ]
+  },
+  "home.html": {
+    "resources": [
+      "img/widgets_02_07.png",
+      "img/widgets_30.jpg",
+      "img/widgets_slider_03.jpg",
+      "img/widgets_02_11.png",
+      "img/widgets_02_09.png",
+      "img/widgets_26.jpg",
+      "img/widgets_49.gif",
+      "img/widgets_54.gif",
+      "img/widgets_39.gif",
+      "img/widgets_slider_01.jpg",
+      "img/widgets_02_18.png",
+      "img/widgets_slider_02.jpg",
+      "img/widgets_28.jpg",
+      "img/widgets_02_19.png",
+      "img/widgets_53.gif",
+      "img/widgets_36.jpg",
+      "css/widgets.css",
+      "img/widgets_34.jpg",
+      "img/widgets_50.gif",
+      "img/widgets_57.gif",
+      "img/widgets_02_20.png",
+      "img/widgets_33.jpg",
+      "img/widgets_slider_04.jpg",
+      "img/widgets_45.gif",
+      "img/widgets_02_17.png",
+      "img/widgets_25.jpg",
+      "img/widgets_58.gif",
+      "img/widgets_46.gif",
+      "img/widgets_35.jpg",
+      "img/widgets_41.gif",
+      "img/widgets_02_05.png",
+      "img/logo.png",
+      "img/widgets_29.jpg",
+      "img/widgets_31.jpg",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "js/app.js",
+      "js/template.min.js",
+      "config.js"
+    ],
+    "refer": []
+  },
+  "member.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "img/shop_logo.gif",
+      "js/app.js",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "returns.html",
+      "favorite.html",
+      "safe.html",
+      "rate.html",
+      "complain.html",
+      "setting.html",
+      "trade.html",
+      "canceled.html",
+      "coupon.html",
+      "deposit.html",
+      "userinfo.html",
+      "rechargepay.html",
+      "integral.html",
+      "login.html",
+      "index.html",
+      "view/member/complaint/complaint.html",
+      "view/member/return/returns.html",
+      "category.html",
+      "cart.html"
+    ]
+  },
+  "category.html": {
+    "resources": [
+      "img/logo.png",
+      "fonts/iconfonts.ttf",
+      "css/style.css",
+      "js/mui.min.js",
+      "config.js",
+      "js/app.js",
+      "js/zepto.js"
+    ],
+    "refer": [
+      "goods.html",
+      "member.html",
+      "cart.html"
+    ]
+  },
+  "returns.html": {
+    "resources": [
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "returns_list.html",
+      "js/app.js",
+      "config.js"
+    ],
+    "refer": [
+      "returns_list.html"
+    ]
+  },
+  "returns_list.html": {
+    "resources": [
+      "fonts/iconfonts.ttf",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "js/template.min.js",
+      "js/zepto.js"
+    ],
+    "refer": []
+  },
+  "favorite_list.html": {
+    "resources": [
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "favorite.html": {
+    "resources": [
+      "favorite_list.html",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "favorite_goods_list.html",
+      "js/app.js",
+      "config.js"
+    ],
+    "refer": [
+      "favorite_list.html",
+      "favorite_shop_list.html",
+      "favorite_goods_list.html"
+    ]
+  },
+  "safe.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/app.js",
+      "config.js"
+    ],
+    "refer": [
+      "paypassword.html",
+      "checkpassword.html"
+    ]
+  },
+  "favorite_shop_list.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "img/shop_logo.gif",
+      "js/app.js",
+      "config.js"
+    ],
+    "refer": []
+  },
+  "favorite_goods_list.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/app.js",
+      "js/template.min.js",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "goodsdetail.html"
+    ]
+  },
+  "rate_list.html": {
+    "resources": [
+      "js/mui.zoom.js",
+      "js/mui.previewimage.js",
+      "img/demo1.jpg",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/template.min.js",
+      "js/zepto.js"
+    ],
+    "refer": [
+      "goodsdetail.html"
+    ]
+  },
+  "rate.html": {
+    "resources": [
+      "rate_list.html",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/app.js",
+      "config.js"
+    ],
+    "refer": [
+      "rate_list.html"
+    ]
+  },
+  "setting.html": {
+    "resources": [
+      "js/mui.picker.min.js",
+      "css/mui.picker.min.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/app.js",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": []
+  },
+  "trade_list.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js",
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/style.css",
+      "js/template.min.js",
+      "js/zepto.js",
+      "js/app.js",
+      "config.js",
+      "fonts/iconfonts.ttf"
+    ],
+    "refer": [
+      "tradedetail.html",
+      "payment.html",
+      "traderate.html",
+      "login.html"
+    ]
+  },
+  "trade.html": {
+    "resources": [
+      "js/mui.min.js",
+      "trade_list.html",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/app.js",
+      "config.js"
+    ],
+    "refer": [
+      "trade_list.html"
+    ]
+  },
+  "canceled_list.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "js/zepto.js",
+      "js/template.min.js"
+    ],
+    "refer": []
+  },
+  "coupon_list.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js"
+    ],
+    "refer": []
+  },
+  "canceled.html": {
+    "resources": [
+      "canceled_list.html",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/app.js",
+      "config.js"
+    ],
+    "refer": [
+      "canceled_list.html"
+    ]
+  },
+  "coupon.html": {
+    "resources": [
+      "coupon_list.html",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/app.js",
+      "config.js"
+    ],
+    "refer": [
+      "coupon_list.html"
+    ]
+  },
+  "complain.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "complain_list.html"
+    ],
+    "refer": [
+      "complain_list.html"
+    ]
+  },
+  "complain_list.html": {
+    "resources": [
+      "img/demo1.jpg"
+    ],
+    "refer": []
+  },
+  "userinfo.html": {
+    "resources": [
+      "js/mui.picker.min.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "css/mui.picker.min.css",
+      "js/app.js",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "address.html"
+    ]
+  },
+  "cart.html": {
+    "resources": [
+      "css/style.css",
+      "js/zepto.js",
+      "fonts/mui.ttf",
+      "fonts/iconfonts.ttf",
+      "js/mui.min.js",
+      "js/app.js",
+      "js/template.min.js",
+      "config.js"
+    ],
+    "refer": [
+      "shopcoupon.html",
+      "shop.html",
+      "member.html",
+      "category.html",
+      "login.html"
+    ]
+  },
+  "deposit.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/app.js",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "recharge.html",
+      "depositdetail.html"
+    ]
+  },
+  "recharge.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf"
+    ],
+    "refer": [
+      "rechargepay.html"
+    ]
+  },
+  "rechargepay.html": {
+    "refer": [
+      "rechargesuccess.html"
+    ],
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf"
+    ]
+  },
+  "rechargesuccess.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf"
+    ],
+    "refer": []
+  },
+  "depositdetail.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/app.js",
+      "js/template.min.js",
+      "js/zepto.js",
+      "config.js",
+      "depositdetail_list.html",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "depositdetail_list.html"
+    ]
+  },
+  "integral.html": {
+    "resources": [
+      "integral_list.html",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/app.js",
+      "config.js",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "integral_list.html"
+    ]
+  },
+  "paypassword.html": {
+    "resources": [
+      "css/mui.picker.min.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf"
+    ],
+    "refer": [
+      "checkpassword.html",
+      "oldpaypassword.html",
+      "nobind.html"
+    ]
+  },
+  "checkpassword.html": {
+    "resources": [
+      "css/mui.picker.min.css",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf"
+    ],
+    "refer": [
+      "viewbind.html"
+    ]
+  },
+  "oldpaypassword.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "css/mui.picker.min.css"
+    ],
+    "refer": []
+  },
+  "goods.html": {
+    "resources": [
+      "goods_list.html",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "goods_aside.html",
+      "goods_list.html"
+    ]
+  },
+  "shopcoupon.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/mui.min.js",
+      "js/mui.pullToRefresh.material.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf"
+    ],
+    "refer": []
+  },
+  "shop.html": {
+    "resources": [
+      "css/widgets.css",
+      "img/widgets_slider_03.jpg",
+      "js/mui.min.js",
+      "img/widgets_slider_01.jpg",
+      "img/widgets_slider_02.jpg",
+      "img/shop_logo.gif",
+      "css/style.css",
+      "img/widgets_slider_04.jpg",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js"
+    ],
+    "refer": []
+  },
+  "login.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "js/mui.enterfocus.js",
+      "config.js",
+      "%3C%url%20action\u003dtoputil_ctl_vcode@gen_vcode%20key\u003dtopwap_signin%20width\u003d120%20height\u003d35%%3E"
+    ],
+    "refer": [
+      "register.html"
+    ]
+  },
+  "goodsdetail.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "img/goods_detail_img.jpg",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "img/shop_logo.gif",
+      "js/app.js",
+      "js/template.min.js",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "view/promotion/promotion.html",
+      "quickcart.html",
+      "evaluation.html"
+    ]
+  },
+  "goods_list.html": {
+    "resources": [
+      "js/zepto.js",
+      "js/template.min.js"
+    ],
+    "refer": [
+      "goodsdetail.html"
+    ]
+  },
+  "goods_aside.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/style.css"
+    ],
+    "refer": []
+  },
+  "integral_list.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "css/style.css",
+      "js/zepto.js",
+      "config.js",
+      "fonts/iconfonts.ttf"
+    ],
+    "refer": [
+      "login.html"
+    ]
+  },
+  "tradedetail.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "goodsdetail.html"
+    ]
+  },
+  "view/promotion/promotion.html": {
+    "resources": [
+      "css/widgets.css",
+      "view/promotion/promotion_list.html",
+      "js/app.js",
+      "js/mui.min.js",
+      "css/style.css",
+      "js/zepto.js",
+      "config.js",
+      "fonts/iconfonts.ttf"
+    ],
+    "refer": [
+      "view/promotion/promotion_list.html"
+    ]
+  },
+  "checkout.html": {
+    "resources": [
+      "js/mui.view.js"
+    ],
+    "refer": [
+      "payment.html"
+    ]
+  },
+  "quickcart.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "checkout.html"
+    ]
+  },
+  "payment.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": []
+  },
+  "view/promotion/promotion_list.html": {
+    "resources": [
+      "css/widgets.css",
+      "js/app.js",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js",
+      "js/template.min.js"
+    ],
+    "refer": [
+      "goodsdetail.html"
+    ]
+  },
+  "view/member/complaint/complaint.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "config.js",
+      "view/member/complaint/complaint_list.html"
+    ],
+    "refer": [
+      "view/member/complaint/complaint_list.html"
+    ]
+  },
+  "view/member/complaint/complaintdetail.html": {
+    "resources": [
+      "js/mui.zoom.js",
+      "js/mui.previewimage.js",
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "goodsdetail.html"
+    ]
+  },
+  "view/member/complaint/complaint_list.html": {
+    "resources": [
+      "js/template.min.js",
+      "js/zepto.js",
+      "js/app.js",
+      "js/mui.min.js",
+      "css/style.css",
+      "config.js"
+    ],
+    "refer": [
+      "view/member/complaint/complaintdetail.html"
+    ]
+  },
+  "view/member/return/detail.html": {
+    "resources": [
+      "js/mui.zoom.js",
+      "fonts/mui.ttf",
+      "js/mui.previewimage.js"
+    ],
+    "refer": []
+  },
+  "view/member/return/returns_list.html": {
+    "resources": [
+      "js/template.min.js",
+      "js/zepto.js"
+    ],
+    "refer": [
+      "view/member/return/detail.html"
+    ]
+  },
+  "view/member/return/returns.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "view/member/return/returns_list.html",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "config.js"
+    ],
+    "refer": [
+      "view/member/return/returns_list.html"
+    ]
+  },
+  "evaluation_list.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js",
+      "js/app.js",
+      "js/mui.zoom.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "js/mui.previewimage.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": []
+  },
+  "evaluation.html": {
+    "resources": [
+      "evaluation_list.html"
+    ],
+    "refer": [
+      "evaluation_list.html"
+    ]
+  },
+  "address.html": {
+    "refer": [
+      "address_add.html"
+    ],
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "css/mui.picker.min.css",
+      "js/zepto.js",
+      "config.js"
+    ]
+  },
+  "address_add.html": {
+    "resources": [
+      "js/mui.picker.js",
+      "js/mui.poppicker.js",
+      "css/mui.poppicker.css",
+      "css/mui.picker.css",
+      "js/app.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": []
+  },
+  "depositdetail_list.html": {
+    "resources": [
+      "js/template.min.js",
+      "js/zepto.js",
+      "js/app.js",
+      "js/mui.min.js",
+      "css/style.css",
+      "config.js"
+    ],
+    "refer": []
+  },
+  "view/member/member.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "img/shop_logo.gif",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js",
+      "js/template.min.js"
+    ],
+    "refer": [
+      "view/member/setting.html",
+      "view/cart/cart.html",
+      "view/passport/login.html",
+      "view/member/trade/canceled.html",
+      "view/category/category.html",
+      "view/member/userinfo/userinfo.html",
+      "view/index.html",
+      "view/msg/index.html",
+      "view/counsellor/index.html",
+      "view/member/point/integral.html",
+      "view/member/msg.html",
+      "view/member/income/index.html",
+      "view/member/ondate/index.html",
+      "view/member/article/index.html",
+      "view/clac/index.html"
+    ]
+  },
+  "view/member/setting.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "css/mui.picker.min.css"
+    ],
+    "refer": [
+      "view/passport/login.html",
+      "view/member/safe/checkpassword.html",
+      "view/member/infomanager.html"
+    ]
+  },
+  "view/cart/cart.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "view/member/member.html",
+      "index.html",
+      "view/category/category.html",
+      "view/cart/checkout.html"
+    ]
+  },
+  "view/category/category.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "css/style.css",
+      "img/logo.png",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js",
+      "js/template.min.js"
+    ],
+    "refer": [
+      "view/cart/cart.html",
+      "goods.html",
+      "index.html",
+      "view/list/goods.html",
+      "view/index.html"
+    ]
+  },
+  "view/passport/login.html": {
+    "resources": [
+      "view/passport/%3C%url%20action\u003dtoputil_ctl_vcode@gen_vcode%20key\u003dtopwap_signin%20width\u003d120%20height\u003d35%%3E",
+      "fonts/mui.ttf",
+      "js/mui.enterfocus.js",
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "css/style.css",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "view/passport/register.html",
+      "view/index.html",
+      "view/passport/forgetPassword.html"
+    ]
+  },
+  "view/item/goodsdetail.html": {
+    "refer": [
+      "view/item/evaluation.html"
+    ],
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js"
+    ]
+  },
+  "view/member/trade/tradedetail.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "view/item/goodsdetail.html"
+    ]
+  },
+  "view/member/trade/canceled.html": {
+    "resources": [
+      "view/member/trade/canceled_list.html"
+    ],
+    "refer": [
+      "view/member/trade/canceled_list.html"
+    ]
+  },
+  "view/member/trade/canceled_list.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "view/member/trade/tradedetail.html"
+    ]
+  },
+  "view/item/evaluation.html": {
+    "resources": [
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/app.js",
+      "js/mui.min.js",
+      "view/item/evaluation_list.html",
+      "config.js"
+    ],
+    "refer": [
+      "view/item/evaluation_list.html"
+    ]
+  },
+  "view/item/evaluation_list.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/mui.zoom.js",
+      "js/mui.pullToRefresh.material.js",
+      "js/mui.previewimage.js"
+    ],
+    "refer": []
+  },
+  "view/passport/register.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "view/passport/agreement.html",
+      "view/passport/verificationsms.html"
+    ]
+  },
+  "view/passport/agreement.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "css/style.css",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": []
+  },
+  "view/list/goods.html": {
+    "resources": [
+      "view/list/goods_list.html"
+    ],
+    "refer": [
+      "view/list/goods_aside.html",
+      "view/list/goods_list.html",
+      "view/shop/shop.html",
+      "view/shop/shopmap.html",
+      "view/list/shops_list.html"
+    ]
+  },
+  "view/member/userinfo/address_add.html": {
+    "resources": [
+      "js/mui.picker.js",
+      "js/mui.poppicker.js",
+      "css/mui.poppicker.css",
+      "css/mui.picker.css"
+    ],
+    "refer": []
+  },
+  "view/cart/checkout.html": {
+    "resources": [
+      "js/mui.view.js"
+    ],
+    "refer": [
+      "view/member/userinfo/address_add.html"
+    ]
+  },
+  "view/member/userinfo/address.html": {
+    "refer": [
+      "view/member/userinfo/address_add.html"
+    ],
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "css/mui.picker.min.css",
+      "js/zepto.js",
+      "config.js"
+    ]
+  },
+  "view/member/userinfo/userinfo.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.picker.min.js",
+      "js/mui.min.js",
+      "js/template.min.js",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "fonts/iconfonts.ttf",
+      "css/mui.picker.min.css",
+      "js/zepto.js",
+      "config.js"
+    ],
+    "refer": [
+      "view/member/userinfo/address.html"
+    ]
+  },
+  "view/index.html": {
+    "refer": [
+      "view/category/category.html",
+      "view/shop/shop.html",
+      "view/cart/cart.html",
+      "view/list/goods.html",
+      "view/qrcode/barcode_scan.html",
+      "view/counsellor/index.html",
+      "view/h5.html",
+      "view/member/member.html",
+      "view/artical/list.html",
+      "view/msg/index.html",
+      "view/artical/detail.html",
+      "view/clac/index.html"
+    ],
+    "resources": []
+  },
+  "view/shop/shop.html": {
+    "refer": [
+      "view/shop/shopmap.html"
+    ],
+    "resources": []
+  },
+  "view/list/shops_list.html": {
+    "refer": [
+      "view/shop/shop.html"
+    ],
+    "resources": []
+  },
+  "view/counsellor/index.html": {
+    "refer": [
+      "view/member/member.html",
+      "view/index.html",
+      "view/msg/index.html",
+      "view/counsellor/plus.html",
+      "view/counsellor/list.html",
+      "view/counsellor/case.html"
+    ],
+    "resources": []
+  },
+  "view/artical/list.html": {
+    "resources": [
+      "view/artical/artical_list.html"
+    ],
+    "refer": [
+      "view/artical/artical_list.html"
+    ]
+  },
+  "view/artical/artical_list.html": {
+    "refer": [
+      "view/artical/detail.html"
+    ],
+    "resources": []
+  },
+  "view/member/safe/checkpassword.html": {
+    "refer": [
+      "view/member/safe/logpassword.html"
+    ]
+  },
+  "view/member/safe/logpassword.html": {
+    "refer": [
+      "view/passport/login.html"
+    ]
+  },
+  "view/member/point/integral.html": {
+    "resources": [
+      "view/member/point/integral_list.html"
+    ],
+    "refer": [
+      "view/member/point/integral_list.html"
+    ]
+  },
+  "view/member/msg.html": {
+    "refer": [
+      "view/h5.html",
+      "view/member/msg_list.html"
+    ]
+  },
+  "view/member/msg_list.html": {
+    "refer": [
+      "view/member/msg_detail.html"
+    ]
+  },
+  "view/member/income/index.html": {
+    "resources": [
+      "view/member/income/index_list.html"
+    ],
+    "refer": [
+      "view/member/income/index_list.html"
+    ]
+  },
+  "view/counsellor/list.html": {
+    "resources": [
+      "view/counsellor/sub_list.html"
+    ],
+    "refer": [
+      "view/counsellor/sub_list.html"
+    ]
+  },
+  "view/member/infomanager.html": {
+    "refer": [
+      "view/member/identifi.html",
+      "view/member/social.html",
+      "view/member/bind.html",
+      "view/member/avar.html",
+      "view/member/exprice.html"
+    ]
+  },
+  "view/msg/index.html": {
+    "refer": [
+      "view/msg/group.html",
+      "view/member/member.html",
+      "view/msg/chat.html",
+      "view/counsellor/index.html"
+    ]
+  },
+  "view/passport/verificationsms.html": {
+    "refer": [
+      "view/passport/login.html"
+    ]
+  },
+  "view/msg/group.html": {
+    "refer": [
+      "view/msg/chat.html"
+    ]
+  },
+  "view/member/ondate/index.html": {
+    "refer": [
+      "view/member/ondate/hour.html"
+    ]
+  },
+  "view/member/article/index.html": {
+    "refer": [
+      "view/member/article/add.html",
+      "view/member/article/edit.html"
+    ]
+  },
+  "view/clac/index.html": {
+    "refer": [
+      "view/clac/detail.html"
+    ]
+  },
+  "view/clac/detail.html": {
+    "refer": [
+      "view/clac/manager.html"
+    ]
+  },
+  "view/clac/manager.html": {
+    "refer": [
+      "view/clac/list.html",
+      "view/clac/userlist.html"
+    ]
+  },
+  "view/clac/userlist.html": {
+    "refer": [
+      "view/clac/userd.html"
+    ]
+  }
+}

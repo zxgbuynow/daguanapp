@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="../../css/style.css">
+  </head>
+
+  <body>
+    <header class="page-header">
+      <i class="header-left icon-func bbc-icon bbc-icon-back mui-action-back"></i>
+      <div class="header-title">设置</div>
+    </header>
+    <section class="container">
+      <section class="section-white">
+        <ul class="mui-table-view">
+          <li id="log_password" class="mui-table-view-cell">
+            <a class="mui-navigate-right">
+              修改密码<br>
+            </a>
+          </li>
+          <li id="info" class="mui-table-view-cell">
+            <a class="mui-navigate-right">
+              资料管理<br>
+            </a>
+          </li>
+          <li class="mui-table-view-cell ">
+			在线状态
+			<div class="mui-switch  online-st mui-switch-mini">
+				<div class="mui-switch-handle"></div>
+			</div>
+		  </li>
+          <!--<li id="preference" class="mui-table-view-cell">
+            <a class="mui-navigate-right">
+              偏好设置<br>
+            </a>
+          </li>-->
+        </ul>
+      </section>
+      <section class="mui-content-padded form-op-section">	
+	      <button id="exit" type="button" class="mui-btn mui-btn-block mui-btn-warning bbc-btn-warning">退出登录</button>
+	    </section>
+    </section>
+    <script src="../../js/zepto.js"></script>
+    <script src="../../js/mui.min.js"></script>
+    <script src="../../js/template.min.js"></script>
+    <script src="../../config.js"></script>
+    <script src="../../js/app.js"></script>
+    <script src="../../js/im/webim.config.js"></script>
+    <script src="../../js/im/strophe-1.2.8.js"></script>
+    <script src="../../js/im/websdk-1.4.13.js"></script>
+    <script src="../../js/im/im.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      mui.init({
+        swipeBack: true, //启用右滑关闭功能
+      });
+      var mobile = "";
+      var state = app.getState();
+      var param = {
+          'method': config.apimethod.counsellor,
+          'id': state.token,
+          'source':config.source
+      }
+      $.dataRequest(param, function(rs) {
+      	console.log(rs.online)
+      	if(rs.online==1){
+      		$('.online-st').addClass('mui-active');
+      	}else{
+      		$('.mui-switch').removeClass('mui-active');
+      	}
+      	mui('.mui-table-view .mui-switch').each(function() { //循环所有toggle
+			var _this = this;
+			mui(_this).switch();//手动初始化一下
+			_this.addEventListener('toggle', function(event) {
+				var isActive = 0;
+				if(event.detail.isActive){
+					isActive = 1;
+				}else{
+					isActive = 0;
+				}
+				plus.nativeUI.showWaiting();
+				var param2 = {
+		            'method': config.apimethod.updateonline,
+		            'account': state.token,
+		          	'source':config.source,
+		            'isActive':isActive
+		       }
+		        $.dataRequest(param2, function(rs) {
+		          var data = rs.data;
+		          	if(isActive){
+		          		mui.toast('已上线');
+		          	}else{
+		          		mui.toast('已下线');
+		          	}
+		          	
+		            plus.nativeUI.closeWaiting();
+		        });
+
+
+			});
+		});
+      })
+      document.getElementById('log_password').addEventListener('tap', function() {
+        clicked('_www/view/member/safe/checkpassword.html', {'checkItem': 'pwdmodify'});
+      });
+      document.getElementById('info').addEventListener('tap', function() {
+        clicked('_www/view/member/infomanager.html');
+      });
+      
+//    document.getElementById('preference').addEventListener('tap', function() {
+//      clicked('_www/view/member/preference.html');
+//    });
+	document.getElementById('exit').addEventListener('tap', function() {
+        mui.confirm('亲，确定退出登录吗？', '', ['取消', '确认'], function(e) {
+          if(e.index == 1) {
+            var state = app.getState();
+            var wa = plus.nativeUI.showWaiting();
+//            var parent = plus.webview.currentWebview().opener();
+//            parent.reload(true);
+              app.setState({});
+              conn.close();
+//            parent.addEventListener('loaded', function() {
+                wa.close()
+                setTimeout(function(){
+                	  clicked('_www/view/passport/login.html');
+//                plus.webview.currentWebview().close();
+                },300)
+//            });
+          } else {
+            return false;
+          }
+        })
+      }, false);
+    </script>
+  </body>
+
+</html>
