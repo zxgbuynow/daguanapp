@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../../css/style.css">
     <style type="text/css">
     .box {
-      height: 13rem;
+      height: 12rem;
       position: relative;
       overflow: hidden;
       background: #FFF;
@@ -24,13 +24,21 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, #ee88aa, rgba(221, 238, 255, 0) 80%, rgba(255, 255, 255, 0.5));
+			background: linear-gradient(to bottom right, #FF86AF, rgba(255, 134, 175, 0.8) 50%, #FF699C 50%);/* 
+      background: linear-gradient(to bottom, #ee88aa, rgba(221, 238, 255, 0) 80%, rgba(255, 255, 255, 0.5)); */
       z-index: 5;
       transform: translate3d(0, 0, 0); }
 	 .mui-icon .mui-badge{
 			    height: 10px;
 			    margin-left: -8px;
+					color: #fff;
     		}
+				.mui-icon .mui-badge h4{
+					font-size: 18px;
+				}
+				.my_price{
+					text-align: right;
+				}
     	 
     </style>
   </head>
@@ -45,11 +53,12 @@
         		<img class="userinfo-avatar" id="head-img" src="" />
         </div>
         <div  class="user-accout"><span id="account" style="color: #646464;"></span></div>
-        <div><span id="grade_name" class="fontS " style="color: #646464;" ><sm class="agency"></sm>大观注册心理师</span></div>
+				<h4>晋斌</h4>
+        <div><span id="grade_name" class="fontS " ><sm class="agency"></sm>大观注册心理师</span></div>
       </div>
     </div>
     <section class="section-white">
-      <div class="section-title user-title">
+      <!-- <div class="section-title user-title">
         <div class="title-txt"><i class="user-icon bbc-icon bbc-icon-assets user-assets"></i> 我的资产</div>
       </div>
       <div class="box-display content-vertical-padded user-assetses font-gray-20">
@@ -57,10 +66,14 @@
         <div data-needlog="true" data-view="_www/view/member/coupon/coupon.html" class="box-item-flex1 content-center "><em class="assets-data" id="coupon">0</em><br><span class="font-gray-20 fontS">优惠券</span></div>
         <div  class="box-item-flex1 content-center "><em class="assets-data" id="experience">0</em><br><span class="font-gray-20 fontS">卡包</span></div>
         <div data-needlog="true" data-view="_www/view/member/point/integral.html" class="box-item-flex1 content-center action-clickview"><em class="assets-data" id="integral">0</em><br><span class="font-gray-20 fontS">积分</span></div>
-      </div>
+      </div> -->
     </section>
     <section class="section-white">
       <ul class="mui-table-view">
+				<li data-needlog="true" data-view="_www/view/member/return/returns.html" class="mui-table-view-cell flex-box">
+					<a class="mui-navigate flex-g4"><i class="user-icon bbc-icon bbc-icon-assets user-assets"></i> 我的资产</a>
+					<p class="flex-g1 my_price">￥0.9</p>
+				</li>
         <li data-needlog="true" data-view="_www/view/member/return/returns.html" class="mui-table-view-cell mui-hidden">
           <a class="mui-navigate-right"><i class="user-icon bbc-icon bbc-icon-history user-returns"></i> 我的资历</a>
         </li>
