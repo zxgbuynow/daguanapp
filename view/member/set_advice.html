@@ -57,8 +57,11 @@
 			color: #aaaaaa;
 			background: none;
 		}
-		.mui-navigate p{
-			min-width: 70px;
+		.mui-navigate{
+			/* justify-content: space-between; */
+		}
+		.mui-navigate p,.mui-navigate-right p{
+			min-width: 86px;
 		}
 		
 	</style>
@@ -72,10 +75,10 @@
     <section class="container">
       <section class="section-white">
 			<ul class="mui-table-view">
-				<li id="log_password" class="mui-table-view-cell">
+				<li class="mui-table-view-cell">
 					<div class="mui-navigate flex-box">
 						<p>咨询方式</p>
-						<div class="mui-check-list flex-g3 mui-clearfix">
+						<div class="mui-check-list flex-g2 mui-clearfix">
 							<div class="mui-input-row mui-checkbox mui-left">
 								<label>文字</label>
 								<input name="checkbox" value="Item 1" type="checkbox">
@@ -93,6 +96,31 @@
 								<input name="checkbox" value="Item 1" type="checkbox">
 							</div>
 						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-navigate-right flex-box">
+						<p>咨询地点</p>
+						<div class="mui-check-list flex-g2 mui-clearfix">
+							<div class="mui-input-row mui-checkbox mui-left">
+								<label>文字</label>
+								<input name="checkbox" value="Item 1" type="checkbox">
+							</div>
+							<div class="mui-input-row mui-checkbox mui-left">
+								<label>语音</label>
+								<input name="checkbox" value="Item 1" type="checkbox">
+							</div>
+							<div class="mui-input-row mui-checkbox mui-left">
+								<label>视频</label>
+								<input name="checkbox" value="Item 1" type="checkbox">
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<span>在线状态</span>
+					<div class="mui-switch mui-switch-mini" data-switch="4">
+						<div class="mui-switch-handle"></div>
 					</div>
 				</li>
 			</ul>
