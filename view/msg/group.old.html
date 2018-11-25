@@ -17,12 +17,12 @@
 
 	<body>
 		<header class="page-header">
-			<i class="header-left icon-func bbc-icon bbc-icon-back mui-action-back"></i>
-					<i id="addfriend" class="header-right txt-func mui-hidden" data-webview="_www/view/counsellor/list.html">添加</i>
-				<div class="header-title">通讯录</div>
-			</header>
+		  <i class="header-left icon-func bbc-icon bbc-icon-back mui-action-back"></i>
+	    	  <i id="addfriend" class="header-right txt-func mui-hidden" data-webview="_www/view/counsellor/list.html">添加</i>
+	      <div class="header-title">通讯录</div>
+	    </header>
 	    <div class="container" id="container" style="margin-bottom: 50px;"> 
-	     	<!--<div class="mui-icon mui-spinner"></div>-->
+	     	<div class="mui-icon mui-spinner"></div>
 	    </div>
 		
 		<script src="../../js/zepto.js"></script>
@@ -38,49 +38,55 @@
 			 <section class="widgets-category-nav section-white">
 		        <div class="mui-table-view">
 		          <ul class="mui-table-view mui-table-view-chevron">
-		          	<% for(var i in list) { %>
-							
-					<li class="mui-table-view-cell mui-media action-webview" data-webview="_www/view/msg/wechat.html" data-webparam = '{"jid":"1", "reciveid":"<%= list[i].mid %>", "username":"<%= list[i].nickname %>","account":"<%= list[i].mobile %>","reciveavar":"<%= $add_server(list[i].cavar) %>"}'>
-						<img class="mui-media-object mui-pull-left" src="<%= list[i].avar %>">
+		          	<% for(var i=0; i<list.length; i++) { %>
+					<li class="mui-table-view-cell mui-media action-webview" data-webview="_www/view/msg/chat.html" data-webparam = '{"jid":"<%= list[i].jid %>", "username":"<%= list[i].name %>" }'>
+						<img class="mui-media-object mui-pull-left" src="<%= list[i].avat %>">
 						<div class="mui-media-body">
-							<%= list[i].nickname %> 
-							<p class="mui-ellipsis mui-media-text mui-media-author">
-								<% for(var m in list[i].signarr) { %>
-									<span><%= list[i].signarr[m] %></span>
-								<% }%>
-							</p>
+							<%= list[i].nickname %>
 						</div>
 					</li>
 					<%}%>
 				  </ul>		
 		        </div>
-		      </section> 
+		      </section>
         </script>
-	    
+	    <script type="text/html" id="friend_list1">
+	    <section class="widgets-category-nav section-white">
+	    			<div class="mui-table-view">
+	    				<ul class="mui-table-view mui-table-view-chevron">
+	    					<% for(var i in list) { %>
+	    					
+	    		<li class="mui-table-view-cell mui-media action-webview" data-webview="_www/view/msg/chat.html" data-webparam = '{"jid":"1", "username":"<%= list[i].mobile %>" }'>
+	    			<img class="mui-media-object mui-pull-left" src="<%= list[i].avar %>">
+	    			<div class="mui-media-body">
+	    				<%= list[i].nickname %>
+	    			</div>
+	    		</li>
+	    		<%}%>
+	    		</ul>		
+	    			</div>
+	    		</section>
+	    	</script>
 		<script type="text/javascript" charset="utf-8">
 		mui.plusReady(function(){ 
 			var state = app.getState();
 			if(state.token){
-
 				var token = plus.storage.getItem('webim_'+state.account)
 				var options = {
-				    apiUrl: WebIM.config.apiURL, 
+				    apiUrl: WebIM.config.apiURL,
 				    user: state.account,
 				    accessToken: token,
 				    appKey: WebIM.config.appkey
 				};
 				conn.open(options);
-				
 				//api获取通讯录
 				var param = {
-						'method': config.apimethod.getUserList,
-						'account': state.account,
-						'source':config.source
+							'method': config.apimethod.getUserList,
+							'account': state.account,
+							'source':config.source
 				}
-				console.log('---user--') 
 				log(param)
 				$.dataRequest(param, function(rs) {
-					log(rs)
 					var rt = {};
 					for(var i in rs){
 						if(rs[i].avar){
@@ -100,13 +106,12 @@
 					$('.container').append(widgets);
 					
 				})
-					
+
 // 				setTimeout(function(){
 // 					//获取好友列表
 // 					conn.getRoster({
 // 			           success : function(roster) {
-// 			           	console.log('suc')
-// 			           		 var data = [];
+// 			           		 var data = []; 
 // 			           		 var users = [];
 // 			                  // 获取当前登录人的好友列表
 // 			                  for ( var i in roster) {
@@ -118,22 +123,23 @@
 // 			                    }
 // 			                  	//ros.name为好友名称
 // 			                  }
-// 			                  console.log(JSON.stringify(data)) 
+// //			                  console.log('hree')
+// //			                  console.log(JSON.stringify(ros))
 // 			                  if(data[0]!=undefined){
+// 			                  	 
 // 			                  	var res = {
 // 			                  		list:data
 // 			                  	}
 // 			                  	$('.container').html('')
-// 				                  	//获取消息头像
+// 			                  		//获取消息头像
 // 									var userjoin = users.join(',');
-// 									log(userjoin);
+// //									log(userjoin);
 // 								    var param = {
 // 								          'method': config.apimethod.getAvatar,
 // 								          'users': userjoin,
 // 								          'source':config.source
 // 								   }
 // 								   $.dataRequest(param, function(rs) {
-// 								   		log(rs)
 // 								   		var avarList = [];
 // 								   		for (var i in res['list']) {
 // 								   			if(rs[res['list'][i]['name']]){
@@ -152,19 +158,17 @@
 // 								   					avar:config.imgser+rs[res['list'][i]['name']]['avar']
 // 								   				})
 // 								   			}else{
-// 								   				res['list'][i]['nickname'] =res['list'][i]['name'];
 // 								   				res['list'][i]['avat'] = '../../img/widgets_02_19.png';
+// 								   				res['list'][i]['nickname'] =res['list'][i]['name'];
 // 								   				avarList.push({
 // 								   					name:res['list'][i]['name'],
 // //								   					nickname:res['list'][i]['name'],
 // 								   					avar:'../../img/widgets_02_19.png'
 // 								   				})
-// 								   				
 // 								   			}
 // 								   			
 // 								   		}
-// 								   		log(rs)
-// 								   		log(res)
+// //								   		log(res)
 // 								   		var widgets = template('friend_list', res);
 // //					                  	console.log(widgets) 
 // 		            						$('.container').append(widgets);
@@ -179,7 +183,8 @@
 // //			                  console.log(JSON.stringify(res))
 // 			           },
 // 			           fail: function(e){
-// 			           	console.log('err')
+// 			           	console.log('12')
+// 			           		$('.container').html('')
 // 				            console.log(JSON.stringify(e))
 // 				       }
 // 			            
@@ -243,8 +248,6 @@
 //				    }
 //				};
 				
-			}else{
-				mui.toast('请登录')
 			}
 			
 		})

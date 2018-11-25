@@ -53,11 +53,11 @@
 	          	<% for(var i=0; i<list.length; i++) { %>
 				<li class="mui-table-view-cell mui-media action-webview" data-webview="_www/view/member/article/edit.html"  data-webparam = '{"article_id":<%= list[i].id %>}'>
 					<a class="mui-navigate-right">
-						<img class="mui-media-object mui-pull-left" src="<%= $add_server(list[i].cover) %>">
+						<img class="mui-media-object mui-pull-left " src="<%= $add_server(list[i].cover) %>">
 						<div class="mui-media-body">
-							<%= list[i].title %>
+							<p class="mui-ellipsis-2"><%= list[i].title %></p>
 							<p class='mui-ellipsis mui-media-text'><%= list[i].description %></p>
-							<p class="mui-ellipsis mui-media-text mui-media-author">作者：本人</p>
+							<p class="mui-ellipsis mui-media-text mui-media-author mui-hidden">作者：本人</p>
 						</div>
 					</a>
 				</li>

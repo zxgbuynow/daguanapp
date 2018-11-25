@@ -34,7 +34,7 @@
           <input id="titleval" type="text" value="" class="mui-input-clear mui-input" placeholder="输入标题">
           <label>文章分类：</label>
           <select id="cate" name="cate" class="mui-input-clear mui-input cate-list" >
-		       <option value="" selected="selected">请选择分类</option>
+
 		  </select>
 		  <label>文章简介：</label>
 		  <textarea id="description" class="bbc-texteara fontS" maxlength="100" rows="3" placeholder="简介……"></textarea>
@@ -85,8 +85,8 @@
     <script src="../../../js/app.js"></script>
 	<script type="text/html" id="cate_list">
 		 <option value="" selected="selected">请选择分类</option>
-    		<% for(var i in list) { %>	
-    			<option value="<%= list[i].id%>" ><%= list[i].title %></option>
+    		<% for(var i in data) { %>	
+    			<option value="<%= data[i].id%>" ><%= data[i].title %></option>
       	<% } %>
     </script>
     <script>
@@ -94,7 +94,7 @@
         var state = app.getState();
         //分类 
 	  	var cparam = {
-            'method': config.apimethod.category,
+            'method': config.apimethod.articalcate, 
             'source':config.source
        }
        $.dataRequest(cparam, function(rs) {

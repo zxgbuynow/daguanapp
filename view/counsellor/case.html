@@ -911,7 +911,7 @@
           </div>
           
           <div class="row mui-input-row">
-          		 <label>案件主诉：</label>
+          		 <label>案主主诉：</label>
 				<textarea id='caseMasterQs' name="caseMasterQs" class="mui-input-clear" placeholder="案件主诉..."></textarea>
 		  </div>
 		  <div class="row mui-input-row">
@@ -958,17 +958,40 @@
     </script>
 
     <script>
+// 			document.getElementById("save").addEventListener('tap',function(){
+// 				//组数据 
+// 				var param = {
+// 						// 'method': config.apimethod.caseAdd,
+// 						// 'source':config.source,
+// 						// 'cid': cid,
+// // 						'truename': userdata.user.truename,
+// // 						'sex': userdata.user.sex,
+// // 						'birthday': userdata.user.birthday,
+// // 						'edu': userdata.user.edu,
+// // 						'grade': userdata.user.grade,
+// // 						'marital': userdata.user.marital,
+// // 						'profession': userdata.user.profession,
+// // 						'mobile': userdata.user.mobile,
+// // 						'chat': userdata.trade.chart,
+// // 						'timerange': userdata.ondate.timerange,
+// // 						'memberid':state.token,
+// 						'data':$("#casepost").serialize()
+// 				}
+// 				console.log(param);return false;
+// 		})
 	 var state = app.getState();
     	mui.plusReady(function() {
        var tid = plus.webview.currentWebview().tid;
        var cid = plus.webview.currentWebview().cid;
+			 var caid = plus.webview.currentWebview().caid;
        var userdata = null;
        //获取用户信息
        var param = {
           'method': config.apimethod.getMemberInfoByTid,
           'source':config.source,
           'tid': tid,
-          'cid':cid
+          'cid':cid,
+					'caid':caid
       }
       $.dataRequest(param, function(rs) { 
       	userdata = rs;
@@ -983,6 +1006,11 @@
       	document.getElementById("mobile").value = rs.user.mobile;
       	document.getElementById("chat").value = rs.trade.chart;
       	document.getElementById("timerange").value = rs.ondate.timerange;
+				//处理 案例
+				if(caid&&rs.case){
+					hanldecase(rs.case);
+				}
+				
 
       })
       	document.getElementById("caseStarttime").addEventListener('tap', function() {
@@ -1016,24 +1044,46 @@
 		});
 		
       document.getElementById("save").addEventListener('tap',function(){
-      	//组数据 
-      	 var param = {
-	          'method': config.apimethod.caseAdd,
-	          'source':config.source,
-	          'cid': cid,
-	          'truename': userdata.user.truename,
-	          'sex': userdata.user.sex,
-	          'birthday': userdata.user.birthday,
-	          'edu': userdata.user.edu,
-	          'grade': userdata.user.grade,
-	          'marital': userdata.user.marital,
-	          'profession': userdata.user.profession,
-	          'mobile': userdata.user.mobile,
-	          'chat': userdata.trade.chart,
-	          'timerange': userdata.ondate.timerange,
-	          'memberid':state.token,
-	          'data':$("#casepost").serialize()
-	      }
+					//组数据 
+					if(caid){
+						var param = {
+								'method': config.apimethod.caseAdd,
+								'source':config.source,
+								'cid': cid,
+								'caid': caid,
+								'truename': userdata.user.truename,
+								'sex': userdata.user.sex,
+								'birthday': userdata.user.birthday,
+								'edu': userdata.user.edu,
+								'grade': userdata.user.grade,
+								'marital': userdata.user.marital,
+								'profession': userdata.user.profession,
+								'mobile': userdata.user.mobile,
+								'chat': userdata.trade.chart,
+								'timerange': userdata.ondate.timerange,
+								'memberid':state.token,
+								'data':$("#casepost").serialize()
+						}
+					}else{
+						var param = {
+								'method': config.apimethod.caseAdd,
+								'source':config.source,
+								'cid': cid,
+								'truename': userdata.user.truename,
+								'sex': userdata.user.sex,
+								'birthday': userdata.user.birthday,
+								'edu': userdata.user.edu,
+								'grade': userdata.user.grade,
+								'marital': userdata.user.marital,
+								'profession': userdata.user.profession,
+								'mobile': userdata.user.mobile,
+								'chat': userdata.trade.chart,
+								'timerange': userdata.ondate.timerange,
+								'memberid':state.token,
+								'data':$("#casepost").serialize()
+						}
+					}
+      	 
 	      $.dataRequest(param, function(rs) {
 	      	mui.toast('添加成功');
             var parentview = plus.webview.currentWebview().opener();
@@ -1055,6 +1105,111 @@
       	$(this).closest('tr').find('td')[8].innerHTML = avrange;
       })
         
+			//
+			function hanldecase(data){
+				$('#AAvl_Avl').val(data['atr']['AAvl_Avl']);
+				$('#ABvl_Avl').val(data['atr']['ABvl_Avl']);
+				$('#ACvl_Avl').val(data['atr']['ACvl_Avl']);
+				$('#ADvl_Avl').val(data['atr']['ADvl_Avl']);
+				$('#AEvl_Avl').val(data['atr']['AEvl_Avl']);
+				$('#AFvl_Avl').val(data['atr']['AFvl_Avl']);
+				$('#ATotal').text(data['atr']['Total']);
+				$('#AAverage').text(data['atr']['avg']);
+				
+				$('#_2AAvl_A2vl').val(data['_2atr']['_2AAvl_A2vl']);
+				$('#_2ABvl_A2vl').val(data['_2atr']['_2ABvl_A2vl']);
+				$('#_2ACvl_A2vl').val(data['_2atr']['_2ACvl_A2vl']);
+				$('#_2ADvl_A2vl').val(data['_2atr']['_2ADvl_A2vl']);
+				$('#_2AEvl_A2vl').val(data['_2atr']['_2AEvl_A2vl']);
+				$('#_2AFvl_A2vl').val(data['_2atr']['_2AFvl_A2vl']);
+				$('#_2ATotal').text(data['_2atr']['Total']);
+				$('#_2AAverage').text(data['_2atr']['avg']);
+				
+				$('#BAvl_Bvl').val(data['_btr']['BAvl_Bvl']);
+				$('#BBvl_Bvl').val(data['_btr']['BBvl_Bvl']);
+				$('#BCvl_Bvl').val(data['_btr']['BCvl_Bvl']);
+				$('#BDvl_Bvl').val(data['_btr']['BDvl_Bvl']);
+				$('#BEvl_Bvl').val(data['_btr']['BEvl_Bvl']);
+				$('#BFvl_Bvl').val(data['_btr']['BFvl_Bvl']);
+				$('#BTotal').text(data['_btr']['Total']);
+				$('#BAverage').text(data['_btr']['avg']);
+				
+				
+				$('#_1MAvl_M1vl').val(data['_1matr']['_1MAvl_M1vl']);
+				$('#_1MBvl_M1vl').val(data['_1matr']['_1MBvl_M1vl']);
+				$('#_1MCvl_M1vl').val(data['_1matr']['_1MCvl_M1vl']);
+				$('#_1MDvl_M1vl').val(data['_1matr']['_1MDvl_M1vl']);
+				$('#_1MEvl_M1vl').val(data['_1matr']['_1MEvl_M1vl']);
+				$('#_1MFvl_M1vl').val(data['_1matr']['_1MFvl_M1vl']);
+				$('#_1MTotal').text(data['_1matr']['Total']);
+				$('#_1MAverage').text(data['_1matr']['avg']);
+				
+				$('#pAvl_PLAN').val(data['_ptr']['pAvl_PLAN']);
+				$('#pBvl_PLAN').val(data['_ptr']['pBvl_PLAN']);
+				$('#pCvl_PLAN').val(data['_ptr']['pCvl_PLAN']);
+				$('#pDvl_PLAN').val(data['_ptr']['pDvl_PLAN']);
+				$('#pEvl_PLAN').val(data['_ptr']['pEvl_PLAN']);
+				$('#pFvl_PLAN').val(data['_ptr']['pFvl_PLAN']);
+				$('#pTotal').text(data['_ptr']['Total']);
+				$('#pAverage').text(data['_ptr']['avg']);
+				
+				$('#A_MAvl_AMvl').val(data['_amtr']['A_MAvl_AMvl']);
+				$('#A_MBvl_AMvl').val(data['_amtr']['A_MBvl_AMvl']);
+				$('#A_MCvl_AMvl').val(data['_amtr']['A_MCvl_AMvl']);
+				$('#A_MDvl_AMvl').val(data['_amtr']['A_MDvl_AMvl']);
+				$('#A_MEvl_AMvl').val(data['_amtr']['A_MEvl_AMvl']);
+				$('#A_MFvl_AMvl').val(data['_amtr']['A_MFvl_AMvl']);
+				$('#A_MTotal').text(data['_amtr']['Total']);
+				$('#A_MAverage').text(data['_amtr']['avg']);
+				
+				$('#_2MAvl_M2vl').val(data['_2mtr']['_2MAvl_M2vl']);
+				$('#_2MBvl_M2vl').val(data['_2mtr']['_2MBvl_M2vl']);
+				$('#_2MCvl_M2vl').val(data['_2mtr']['_2MCvl_M2vl']);
+				$('#_2MDvl_M2vl').val(data['_2mtr']['_2MDvl_M2vl']);
+				$('#_2MEvl_M2vl').val(data['_2mtr']['_2MEvl_M2vl']);
+				$('#_2MFvl_M2vl').val(data['_2mtr']['_2MFvl_M2vl']);
+				$('#_2MTotal').text(data['_2mtr']['Total']);
+				$('#_2MAverage').text(data['_2mtr']['avg']);
+				
+				
+				$('#caseMasterQs').val(data['caseMasterQs']);
+				$('#casefamilyQs').val(data['casefamilyQs']);
+				$('#caseSkill').val(data['caseSkill']);
+				$('#caseWork').val(data['caseWork']);
+				$('#caseResult').val(data['caseResult']);
+				$('#caseStreng').val(data['caseStreng']);
+				$('#caseMark').val(data['caseMark']);
+				
+				var caseS = data.caseS;				
+				for(var i=0;i<caseS.length;i++){
+						var tem = caseS[i];
+						$("input[name='caseS'][value='"+tem+"']").attr("checked", true);
+				}
+				
+				var caseR9 = data.caseR9;				
+				for(var i=0;i<caseR9.length;i++){
+						var tem = caseR9[i];
+						$("input[name='caseR9'][value='"+tem+"']").attr("checked", true);
+				}
+				
+				var caseSOR = data.caseSOR;				
+				for(var i=0;i<caseSOR.length;i++){
+						var tem = caseSOR[i];
+						$("input[name='caseSOR'][value='"+tem+"']").attr("checked", true);
+				}
+				
+				var casePNF = data.casePNF;				
+				for(var i=0;i<casePNF.length;i++){
+						var tem = casePNF[i];
+						$("input[name='casePNF'][value='"+tem+"']").attr("checked", true);
+				}
+				
+				$('#caseStarttime').val(data.caseStarttime);
+				$('#caseEndtime').val(data.caseEndtime);
+				
+			}
+			
+			
     }); 
     
     </script>

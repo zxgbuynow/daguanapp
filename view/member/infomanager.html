@@ -43,7 +43,9 @@
             <a class="mui-navigate-right">
               <div class="mui-table">
                 <div class="mui-table-cell mui-col-xs-4">绑定手机：</div>
-                <div id="bind_val" class="mui-table-cell mui-col-xs-8 mui-text-right"></div>
+                <div id="bind_val" class="mui-table-cell mui-col-xs-8 mui-text-right">
+                		<i class="isbind" style="display: none;">已绑定</i>
+                </div>
               </div>
             </a>
           </li>
@@ -93,14 +95,20 @@
       var state = app.getState();
       var ret = null;
       var mobile = null;
+      var st = 0;
       var param = {
           'method': config.apimethod.userinfo,
           'account': state.account,
           'source':config.source
       }
       $.dataRequest(param, function(rs) {
+      	
         var data = rs;
         ret = rs;
+        if(data.status==1){
+        		st = 1;
+        		$('.isbind').show()
+        }
         mobile = ret.mobile;
         defaultImg();
         
@@ -116,6 +124,7 @@
         clicked('_www/view/member/exprice.html')
       });
       document.getElementById('bind').addEventListener('tap', function() {
+      	if(st==1){return false;}
         sendSms(mobile);
       });
       

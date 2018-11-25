@@ -72,14 +72,14 @@
     <script src="../../../js/app.js"></script>
     <script type="text/html" id="f_list">
       	<% for(var i=0; i<flist.length; i++) { %>
-		<li class="mui-table-view-cell mui-media action-webview" data-webview="_www/view/clac/userlist.html" data-webparam='{"acid":<%= flist[i].classid %>, "actype":<%= flist[i].type %>}'>
+		<li class="mui-table-view-cell mui-media action-webview" data-webview="_www/view/clac/detail.html" data-webparam='{"acid":<%= flist[i].classid %>, "actype":<%= flist[i].type %>}'>
 			<a class="mui-navigate-right">
 				<img class="mui-media-object mui-pull-left" src="<%= $add_server(flist[i].pic) %>" >
 				<div class="mui-media-body">
 					<p>
 						<span class="mui-text-title"><%= flist[i].title %></span>
 					</p>
-					<p class="mui-ellipsis  ">地点：上海</p>
+					<p class="mui-ellipsis  ">地点：<%= flist[i].address %></p>
 					<p class='mui-ellipsis mui-media-author'>时间：<%= $timestamp_To_Time(flist[i].start_time) %></p>
 				</div>
 			</a>

@@ -273,6 +273,10 @@
 		background: #CCCCCC;
 		color: #686868;
 	}
+	.mc-remark-options p.unable i, .ondate-time-main .time-items span.unable i {
+		background: #4CD964;
+
+	}
 	.container.ondate-time-main {
     padding-top: 49px;
 	}

@@ -50,10 +50,10 @@
       <div id="user_info" class="user-logined " data-view="_www/view/member/userinfo/userinfo.html">
         <div class="login-avatar">
         		<!--<i class="bbc-icon bbc-icon-member fontB"></i>-->
-        		<img class="userinfo-avatar" id="head-img" src="" />
+        		<img class="userinfo-avatar" id="head-img" src="" onerror="javascript:this.src='../../img/daguan.png';"/>
         </div>
-        <div  class="user-accout"><span id="account" style="color: #646464;"></span></div>
-				<h4>晋斌</h4>
+        <div  class="user-accout"><span  style="color: #646464;"></span></div>
+				<h4 id="account"></h4>
         <div><span id="grade_name" class="fontS " ><sm class="agency"></sm>大观注册心理师</span></div>
       </div>
     </div>
@@ -70,12 +70,12 @@
     </section>
     <section class="section-white">
       <ul class="mui-table-view">
-				<li data-needlog="true" data-view="_www/view/member/return/returns.html" class="mui-table-view-cell flex-box">
-					<a class="mui-navigate flex-g4"><i class="user-icon bbc-icon bbc-icon-assets user-assets"></i> 我的资产</a>
-					<p class="flex-g1 my_price">￥0.9</p>
-				</li>
-        <li data-needlog="true" data-view="_www/view/member/return/returns.html" class="mui-table-view-cell mui-hidden">
-          <a class="mui-navigate-right"><i class="user-icon bbc-icon bbc-icon-history user-returns"></i> 我的资历</a>
+		<li data-needlog="true" data-view="_www/view/member/return/returns.html" class="mui-table-view-cell flex-box">
+			<a class="mui-navigate flex-g4"><i class="user-icon bbc-icon bbc-icon-assets user-assets"></i> 我的资产</a>
+			<p class="flex-g1 my_price">￥0.00</p>
+		</li>
+        <li data-needlog="true" data-view="_www/view/member/meset.html" class="mui-table-view-cell action-clickview">
+          <a class="mui-navigate-right"><i class="user-icon bbc-icon bbc-icon-history user-returns"></i> 我的咨询设置</a>
         </li>
         <li data-needlog="true" data-view="_www/view/member/classes/index.html" class="mui-table-view-cell action-clickview">
           <a class="mui-navigate-right"><i class="user-icon bbc-icon bbc-icon-password user-safe"></i> 我的课程/活动</a>
@@ -160,9 +160,10 @@
 	
 		        $.dataRequest(param, function(rs) { 
 		        	// log('---------11-----')  
-		        		// log(rs)
-		        		$('#income').text(Currency.format(rs.income))
-		        		$('#integral').text(rs.points)
+		        		log(rs)
+		        		$('.my_price').text(Currency.format(rs.income))
+//		        		$('#income').text(Currency.format(rs.income))
+//		        		$('#integral').text(rs.points)
 		        })
 
 			     

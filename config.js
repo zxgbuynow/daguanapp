@@ -67,6 +67,14 @@ var config = {
         articlemydl:'article.mydl',
 		msgsys:'msg.sys',
 		ismsg:'is.msg',
-		getUserList:'getUser.list'
+		getUserList:'getUser.list',
+		counsellorst:'counsellor.st',
+		articalcate:'artical.cate',
+		claccate:'clac.cate',
+		recordlist:'recordlist',
+		sendhxmsg:'send.hxmsg',
+		hxmsgls:'hxmsg.ls',
+		hxmsgtwo:'hxmsg.two',
+		hxmsgup:'hxmsg.up',
     }
 }

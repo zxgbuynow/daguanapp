@@ -54,6 +54,37 @@
 				.mc-table-cell-today a{
 					color: #fff;
 				}
+		.mc-cell-catch{
+		    			/*4585D5*/
+		    			/*background-color: #3ab54a !important;*/
+		    			background-color: #4585D5 !important;
+		    			border-radius: 30px;
+		    		}
+		    		.mc-cell-catch a{
+		    			color: #fff!important;
+		    		}
+		    		.mc-cell-filled{
+		    			background-color: #E45F62 !important;
+		    			border-radius: 30px;
+		    		}
+		    		.mc-cell-filled a{
+		    			color: #fff!important;
+		    		}
+		    		.mc-cell-disabled{
+		    			background-color: #CCCCCC !important;
+		    			border-radius: 30px;
+		    		}
+		    		.mc-cell-disabled a{
+		    			color: #fff!important;
+		    		}
+				.mc-cell-selected{
+					color: #fff;
+/*					background: #4585D5;*/
+					border-radius: 50%;
+				}
+				.mc-table-cell-today.mc-cell-selected a{
+					color: #fff;
+				}
     </style>
   </head>
 
@@ -63,18 +94,17 @@
     	  <i id="all_clander" class="header-left txt-func action-webview" data-webview="_www/view/counsellor/list.html">所有日程</i>
       <div class="header-title">工作台</div>
       <!--<span>2018.3.25</span>-->
-			<i class="header-right txt-func">我的咨询</i>
+	<i class="header-right txt-func action-webview" data-webview="_www/view/counsellor/myondate.html">我的咨询</i>
       <i class=" mui-icon mui-icon-plus mui-pull-right cander-icon action-webview mui-hidden" data-webview="_www/view/counsellor/plus.html"></i>
     </header>
-    <div class="container" id="container" style="margin-bottom: 50px;"> 
+    <div class="container" id="container" > 
        
     </div>
-		<div class="mc-remark-options">
-			<p class="on"><i></i><span>可预约</span></p>
-			<p class="filled"><i></i><span>已约满</span></p>
-			<p class="disabled"><i></i><span>不可预约</span></p>
-		</div>
-		<div class="counsellor-item-list">
+	<!-- <div class="mc-remark-options">
+		<p class="filled"><i></i><span>有预约</span></p>
+		<p class="disabled"><i></i><span>没预约</span></p>
+	</div> -->
+		<!--<div class="counsellor-item-list">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell mui-media">
 					<a href="javascript:;" class="cell-flex">
@@ -95,7 +125,7 @@
 					</a>
 				</li>
 			</ul>
-		</div>
+		</div>-->
     <nav class="mui-bar bbc-bar-tab">
       <a class="bbc-tab-item "  data-webview="_www/view/index.html">
         <span class="mui-icon bbc-icon bbc-icon-home"></span>
@@ -125,7 +155,38 @@
     <script src="../../config.js"></script>
     <script src="../../js/app.js"></script>
     <script src="../../js/MCalendar.js"></script>
-	<script type="text/html" id="calendar_list">
+    <script type="text/html" id="calendar_list">
+    	<% if(list != null){ %>
+		<div class="counsellor-item-list">
+			<ul class="mui-table-view">
+				<% for(var i=0; i<list.length; i++) { %>
+				<li class="mui-table-view-cell mui-media">
+					<% if($getDateDiff(list[i].end_time)){%>
+						<a  class="cell-flex">
+							<h3 class="mui-ellipsis flex-g2"><%= list[i].title%></h3>
+							<p class="time flex-g1"><span><%= $getDateDiff(list[i].start_time)%></span></p>
+							<div class="mui-media-object flex-g1 connect-options">
+								<span class="btn-connect-pink">与他沟通</span>
+							</div>
+						</a>
+		        		<%}else{%>
+			        			<a  class="cell-flex">
+							<h3 class="mui-ellipsis flex-g2"><%= list[i].title%></h3>
+							<p class="time flex-g1"><span>完成</span></p>
+							<div class="mui-media-object flex-g1 connect-options">
+								<span class="btn-connect-pink">与他沟通</span>
+							</div>
+						</a>
+		        		<%}%> 
+
+				</li>
+				 <%}%>
+			</ul>
+		</div>
+		<%}%>
+	</script>
+	
+	<script type="text/html" id="calendar_list1">
 		<% if(list != null){ %>
 			<ul class="mui-table-view calendar-list" style="background-color: #FFFFFF;">
 	        <% for(var i=0; i<list.length; i++) { %>
@@ -152,13 +213,26 @@
       mui.init({
         swipeBack: true //启用右滑关闭功能
       });
-			test();
+//			test();
       mui.plusReady(function() {
          test();
       });
 	  function test(){
 			var today = mui.DateUtil.addDate(mui.DateUtil.getToday(),0);
 			var MC = mui("#container").MCalendar({date:today});
+			
+			//
+			var tip = '<div class="mc-remark-options">';
+				tip += '<p class="filled"><i></i><span>有预约</span></p>';
+				tip += '<p class="disabled"><i></i><span>没预约</span></p></div>';
+				$("#container").append(tip);
+			
+			$(".mc-table-cell").each(function(el,m){
+				if(!$(m).attr('disabled')){
+					$(this).addClass('mc-cell-disabled')
+				}
+			});
+			
 			var state = app.getState();
 		  	var param = {
 	            'method': config.apimethod.getCurrentCander,
@@ -167,7 +241,7 @@
 	       }
 				 
 	       $.dataRequest(param, function(rs) {
-					 log(rs)
+				log(rs) 
 				if(rs&&rs.length>0){
 					var c = 0;
 					$(".mc-table-cell").each(function(el,m){
@@ -176,7 +250,9 @@
 						}
 						var i = el+1; 
 						if(rs.indexOf(c)>-1){
-							$(this).addClass('mc-cell-catch')
+							console.log(c)
+							$(this).removeClass('mc-cell-disabled')
+							$(this).addClass('mc-cell-filled')
 						}
 					});
 				}
