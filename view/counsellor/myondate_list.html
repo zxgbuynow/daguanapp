@@ -122,10 +122,28 @@
     }
     #slider .mui-table-view .mui-media-object{
           max-width: 50px;
-    height: 50px;
-    line-height: 50px;
-    margin-right: 10px;
+					height: 50px;
+					line-height: 50px;
+					margin-right: 10px;
     }
+		#slider .redpackets-list .mui-media-object{
+				max-width: 96px;
+				height: initial;
+				line-height: initial;
+				margin-right: 0;
+				text-align: right;
+				text-align: -webkit-right;
+		}
+		#slider .redpackets-list .mui-media-object span{
+			min-width: 68px;
+			max-width: 96px;
+		}
+		#slider .redpackets-list .mui-media-object span.min{
+			width: 68px;
+		}
+		#slider .redpackets-list .mui-media-object span.max{
+			width: 96px;
+		}
     #slider .deposit-detail-amount{
       width: auto;
       display: flex;
@@ -180,6 +198,10 @@
       width: 1px;
       right: 0.1rem;
     }
+		#slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item:first-child:after{
+			top:50%;
+			margin-top: -9px;
+		}
     #slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item:last-child:after{
       content: '';
     }
@@ -217,12 +239,23 @@
       	<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
           <div id="scroll1" class="mui-scroll-wrapper advice-list">
             <div class="mui-scroll " data-count="0" data-total="">
-              <ul class="mui-table-view redpackets-list " data-type="all">
-              	
-                <!--<div class="mui-loading">
-                  <div class="mui-spinner">
-                  </div>
-                </div>-->
+              <div class="mui-loading">
+								<div class="mui-spinner">
+								</div>
+              </div>
+							<ul class="mui-table-view redpackets-list " data-type="all">
+								<li class="mui-table-view-cell mui-media no-bottom-bd">
+									<div class="box-flex">
+										<div class="mui-media-body flex-g2">
+											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
+											<p class="current-progress-content">当前进度: 1/1 <span><i>￥</i>30.00</span></p>
+											<p class='mui-ellipsis time-txt'>2018-10-25</p>
+										</div>
+										<div class="mui-media-object">
+											<span class="bg">与他沟通</span>
+										</div>
+									</div>
+								</li>
               </ul>
             </div>
           </div>
@@ -231,11 +264,24 @@
         <div id="item2mobile" class="mui-slider-item mui-control-content ">
           <div id="scroll2" class="mui-scroll-wrapper advice-list">
             <div class="mui-scroll" data-count="1" data-total="">
+							<div class="mui-loading">
+								<div class="mui-spinner">
+								</div>
+							</div>
               <ul class="mui-table-view redpackets-list " data-type="0">
-                <div class="mui-loading">
-                  <div class="mui-spinner">
-                  </div>
-                </div>
+								<li class="mui-table-view-cell mui-media no-bottom-bd">
+									<div class="box-flex">
+										<div class="mui-media-body flex-g2">
+											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
+											<p class="current-progress-content">当前进度: 1/1 <span><i>￥</i>30.00</span></p>
+											<p class='mui-ellipsis time-txt'>2018-10-25</p>
+										</div>
+										<div class="mui-media-object">
+											<span class="bg">与他沟通</span>
+											<span class="bd">取消咨询</span>
+										</div>
+									</div>
+								</li>
               </ul>
             </div>
           </div>
@@ -243,11 +289,23 @@
         <div id="item3mobile" class="mui-slider-item mui-control-content">
           <div id="scroll3" class="mui-scroll-wrapper advice-list">
             <div class="mui-scroll" data-count="1" data-total="">
+							<div class="mui-loading">
+								<div class="mui-spinner">
+								</div>
+							</div>
               <ul class="mui-table-view redpackets-list " data-type="1">
-                <div class="mui-loading">
-                  <div class="mui-spinner">
-                  </div>
-                </div>
+								<li class="mui-table-view-cell mui-media no-bottom-bd">
+									<div class="box-flex">
+										<div class="mui-media-body flex-g2">
+											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
+											<p class="current-progress-content">当前进度: 1/1 <span><i>￥</i>30.00</span></p>
+											<p class='mui-ellipsis time-txt'>2018-10-25</p>
+										</div>
+										<div class="mui-media-object">
+											<span>已取消</span>
+										</div>
+									</div>
+								</li>
               </ul>
             </div>
           </div>
@@ -255,11 +313,45 @@
         <div id="item4mobile" class="mui-slider-item mui-control-content ">
           <div id="scroll4" class="mui-scroll-wrapper advice-list">
             <div class="mui-scroll " data-count="1" data-total="">
+							<div class="mui-loading">
+								<div class="mui-spinner">
+								</div>
+							</div>
               <ul class="mui-table-view redpackets-list " data-type="4">
-                <div class="mui-loading">
-                  <div class="mui-spinner">
-                  </div>
-                </div>
+								<li class="mui-table-view-cell mui-media no-bottom-bd">
+									<div class="box-flex">
+										<div class="mui-media-body flex-g2">
+											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
+											<p class='mui-ellipsis time-txt'>2018-10-25</p>
+										</div>
+										<div class="mui-media-object">
+											<span class="bg min">填写案例</span>
+											<span class="bd max">查看修改案例</span>
+										</div>
+									</div>
+								</li>
+								<li class="mui-table-view-cell mui-media no-bottom-bd">
+									<div class="box-flex">
+										<div class="mui-media-body flex-g2">
+											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
+											<p class='mui-ellipsis time-txt'>2018-10-25</p>
+										</div>
+										<div class="mui-media-object">
+											<span class="bg min">填写案例</span>
+										</div>
+									</div>
+								</li>
+								<li class="mui-table-view-cell mui-media no-bottom-bd">
+									<div class="box-flex">
+										<div class="mui-media-body flex-g2">
+											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
+											<p class='mui-ellipsis time-txt'>2018-10-25</p>
+										</div>
+										<div class="mui-media-object">
+											<span class="bd max">查看修改案例</span>
+										</div>
+									</div>
+								</li>
               </ul>
             </div>
           </div>
