@@ -181,7 +181,7 @@
 	<script type="text/html" id="nav_list">
 		<ul class="widgets-icons-nav">
 		<% for(var i in data) { %>
-          <li class="" data-webview="_www/view/clac/list.html" data-webparam = '{"cat_id":<%= list[i].id %>}'><i><a href="#"><img src="<%= $add_server(data[i].cover) %>"></a></i><span><%= data[i].title %></li>
+          <li class="" data-webview="_www/view/clac/list.html" data-webparam = '{"cat_id":<%= data[i].id %>}'><i><a href="#"><img src="<%= $add_server(data[i].cover) %>"></a></i><span><%= data[i].title %></li>
         <%}%>
         </ul>
 	</script>
