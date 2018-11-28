@@ -102,7 +102,9 @@
 					</div>
 					<% if(!list[i].st){ %>
 					<span class="mui-badge mui-badge-danger" style="height: 12px;"></span>
-					<% } %>
+					<% }else{ %>
+					<span class="mui-badge " style="height: 15px;"><%= list[i].times %></span>
+					<% }%>
 				</li> 
 			<% } %>
 	    	</script>
@@ -128,7 +130,14 @@
 				}
 				log(param)
 				$.dataRequest(param, function(rs) {
-					var widgets = template('session_list', rs);
+					var rt = {};
+					if(rs){
+						rt = {
+							'list':rs
+						};
+						
+					}
+					var widgets = template('session_list', rt);
 	            		$('.session-list').append(widgets);
 				})
 			}else{
