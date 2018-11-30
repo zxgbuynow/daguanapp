@@ -18,7 +18,9 @@ input, textarea, button, a {
 body, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, fieldset, textarea {
     margin: 0;
 }
-
+header{
+	z-index: 3333;
+}
 
 pre {
     margin: 0;
@@ -194,6 +196,7 @@ a.btn {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     margin: 0 10px;
+	z-index: 222;
 }
  
 .bubble.bubble_default {
@@ -203,7 +206,7 @@ a.btn {
 .bubble:before, .bubble:after {
 	position: absolute;
 	top: 8px;
-	border: 6px solid transparent;
+	border: 0;
 	content: " ";
 }
 
@@ -213,14 +216,15 @@ a.btn {
 	
 .bubble.right em,.bubble.right span{
 	font-style: normal;
-	font-size: 26px;
+	font-size: 1em;
 	position: absolute;
-	right: -9px;
-	top: -5px;
+	right: -8px;
+    top: 2px;
 	color: #4883DD;
+	z-index: 111;
 }
 .bubble.right span{
-	right:-7.5px;
+	right:-6.8px;
 	color:#E6F7FE;
 }
 
@@ -240,14 +244,15 @@ a.btn {
 
 .bubble.left em,.bubble.left span{
 	font-style: normal;
-	font-size: 26px;
+	font-size: 1em;
 	position: absolute;
-	left: -9px;
-	top: -5px;
+	left: -8px;
+	top: 2px;
 	color: #969696;
+	z-index: 111;
 }
 .bubble.left span{
-	left: -7.5px;
+	left: -6.8px;
 	color: #fff;
 }
 
@@ -312,7 +317,7 @@ a.btn {
 	color: #4883DF;
 }
 .bubble_cont .plain {
-	padding: 9px 13px;
+	padding: 6px 8px;
 }
  
 .bubble_cont .picture {
@@ -338,6 +343,7 @@ a.btn {
 	position: fixed;
     bottom: 0;
     width: 100%;
+	z-index: 3333;
 }
  
 .box_ft_hd {
