@@ -17,55 +17,10 @@ conn.listen({
     onClosed: function ( message ) {},         //连接关闭回调
     onTextMessage: function ( message ) {
     		console.log(JSON.stringify(message))
-//  		mui.toast('new msg')
-//		console.log('-------------111-----------------')
-    		//TODO 处理缓存
-    		//TODO 处理缓存
-    		var users = [];
-		users.push(message.to);
-//		console.log(message.to)
-		users.push(message.from);
-//		console.log(usernm)
-		var userjoin = users.join(',');
-		log(userjoin);
-	    var param = {
-	          'method': config.apimethod.getAvatar,
-	          'users': userjoin,
-	          'source':config.source
-	   }
-	   $.dataRequest(param, function(rs) {
-	   		var rt = rs.data;
-	   		console.log(JSON.stringify(rs))
-	   		if(rs[message.to]['avar']){
-	   			var senderAvatar = config.imgser+rs[message.from]['avar'];
-//	   			log(msgInit.senderAvatar);
-	   		}
-	   		if(rs[message.from]['avar']){
-	   			var receiverAvatar = config.imgser+rs[message.to]['avar'];
-//	   			log(msgInit.receiverAvatar);
-	   		}
-	    		setImMsg('receiver','text', message.data, message.from, message.to,rs[message.from]['nickname'],senderAvatar,receiverAvatar);
-	    		//处理刷新会话
-	    		if (window.plus) {
-	        		if(plus.webview.currentWebview().id == '_www/view/msg/index.html'){
-					var msgind = plus.webview.getWebviewById('_www/view/msg/index.html');
-					mui.fire(msgind, 'refreshmsglist');
-	        		}
-	        }
-    	})
-//  		setImMsg('receiver','text', message.data, message.from, message.to);
-//  		
-//  		//处理刷新会话
-//  		if (window.plus) {
-////  			mui.toast('falg')
-//      		if(plus.webview.currentWebview().id == '_www/view/msg/index.html'){
-////      			plus.webview.currentWebview().reload()
-//				var msgind = plus.webview.getWebviewById('_www/view/msg/index.html');
-//				mui.fire(msgind, 'refreshmsglist');
-//      		}
-////      		log(plus.webview.currentWebview())
-////              		plus.webview.currentWebview().reload()
-//      }
+		mui.plusReady(function(){
+			//声音提醒
+			plus.device.beep(3);
+		})
     	},    //收到文本消息
     onEmojiMessage: function ( message ) {},   //收到表情消息
     onPictureMessage: function ( message ) {}, //收到图片消息
