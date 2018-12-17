@@ -76,5 +76,8 @@ var config = {
 		hxmsgls:'hxmsg.ls',
 		hxmsgtwo:'hxmsg.two',
 		hxmsgup:'hxmsg.up',
+		smsginfo:'smsg.info',
+		noticemsg:'notice.msg',
+		cancleallcalenda:'cancleall.calenda',
     }
 }

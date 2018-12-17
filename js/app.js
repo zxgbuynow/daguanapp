@@ -357,15 +357,13 @@ var Currency = {
       data: param,
       success: function(response) {
         var data = response.data;
-        log('9999999999')
         log(data)
         if(response.code == 1) {
-        	log('000000000000000')
           var users = JSON.parse(localStorage.getItem('$users') || '[]');
           users.push(loginInfo);
           localStorage.setItem('$users', JSON.stringify(users));
           
-          return owner.createState(loginInfo.account, data.id, data.nickname, data.agency, callback);
+          return owner.createState(loginInfo.account, data.id, data.nickname, data.agency,data.avar, callback);
         } else {
           return callback(response.msg);
         }
@@ -377,12 +375,16 @@ var Currency = {
     });
   };
 
-  owner.createState = function(name, token, nickname, agency, callback) {
+  owner.createState = function(name, token, nickname, agency,avar, callback) {
     var state = owner.getState();
     state.account = name;
     state.nickname = nickname;
     state.agency = agency;
     state.token = token;
+    state.avar = avar;
+    if(avar){
+    		state.avar = config.imgser+avar;
+    }
     owner.setState(state);
     return callback();
   };
@@ -1161,6 +1163,33 @@ if(document.getElementById("msg-count")){
        })
 	})
 }
+if(document.getElementById("advice-count")){
+	mui.plusReady(function() {
+		//消息
+       	var state = app.getState();
+	  	var param = {
+            'method': config.apimethod.calendatoday,
+	          'account': state.token,
+	          'day': Math.floor(Date.parse(new Date())/1000),
+	          'source':config.source
+       }
+       $.dataRequest(param, function(rs) {
+       		if(rs){
+				document.getElementById("advice-count").classList.remove('mui-hidden');
+			}else{
+				document.getElementById("advice-count").classList.add('mui-hidden');
+			}
+       })
+	})
+}
+if($('.callmm')){
+	mui.plusReady(function() {
+		$('.callmm').on('tap',function(){
+			plus.device.dial( "4001001355", false );
+		})
+	})
+}
+
 //document.addEventListener('plusready',backreload);
 //function backreload(){
 //var old_back = mui.back;

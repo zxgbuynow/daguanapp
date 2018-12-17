@@ -1352,7 +1352,8 @@
 					"view/counsellor/case.html",
 					"view/clac/index.html",
 					"view/counsellor/my_advice.html",
-					"view/counsellor/myondate.html"
+					"view/counsellor/myondate.html",
+					"view/msg/wechat.html"
 				],
 				"priority": 0
 			},
@@ -1395,7 +1396,8 @@
 				"resources": [],
 				"refer": [
 					"view/h5.html",
-					"view/member/msg_list.html"
+					"view/member/msg_list.html",
+					"view/member/smsg.html"
 				],
 				"priority": 0
 			},
@@ -1437,14 +1439,16 @@
 					"view/msg/group.html",
 					"view/member/member.html",
 					"view/msg/chat.html",
-					"view/counsellor/index.html"
+					"view/counsellor/index.html",
+					"view/msg/wechat.html"
 				],
 				"priority": 0
 			},
 			"view/passport/verificationsms.html": {
 				"resources": [],
 				"refer": [
-					"view/passport/login.html"
+					"view/passport/login.html",
+					"view/passport/verificationsms.html"
 				],
 				"priority": 0
 			},
@@ -1528,6 +1532,20 @@
 					"view/counsellor/myondate_list.html"
 				],
 				"refer": [],
+				"priority": 0
+			},
+			"view/member/smsg.html": {
+				"resources": [],
+				"refer": [
+					"view/member/smsg_detail.html"
+				],
+				"priority": 0
+			},
+			"view/counsellor/sub_list.html": {
+				"resources": [],
+				"refer": [
+					"view/msg/wechat.html"
+				],
 				"priority": 0
 			}
 		},

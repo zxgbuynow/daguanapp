@@ -24,15 +24,16 @@
   <script src="../../js/app.js"></script>
   <script type="text/html" id="content-info">
     <section class="content-padded border-bottom">
-      <h1 class="content-center content-padded"><%= descrption %></h1>
+      <h1 class="content-center content-padded"><%= title %></h1>
       <section class="content-center fonts font-gray-40"><%= $timestamp_To_Time(create_time) %></section>
       <div class="fontS font-gray-20 single-img">
-
+		<%= content %>
       </div>
     </section>
   </script>
   <script>
     mui.plusReady(function() {
+    	var state = app.getState();
     	  //退回刷新
       var oldBack = mui.back;
       mui.back = function() {
@@ -41,6 +42,7 @@
         oldBack();
       };
       var msg_id = plus.webview.currentWebview().msg_id;
+      log(msg_id)
 	//祥情
       var param = {
           'method': config.apimethod.smsginfo,
@@ -48,10 +50,23 @@
           'id': msg_id
       }
       $.dataRequest(param, function(rs) {
+      	log(rs)
         var tempEl = template('content-info', rs);
         $('.container').html(tempEl);
       });
       
+       //更新
+      var param1 = {
+          'method': config.apimethod.msgup,
+          'source':config.source,
+          'id': msg_id,
+          'type':0,
+          'account':state.token,
+      }
+      log(param1)
+      $.dataRequest(param1, function(rs) {
+      	log(rs);
+      });
       
     });
   </script>

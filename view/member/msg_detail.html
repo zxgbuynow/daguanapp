@@ -27,12 +27,13 @@
       <h1 class="content-center content-padded"><%= descrption %></h1>
       <section class="content-center fonts font-gray-40"><%= $timestamp_To_Time(create_time) %></section>
       <div class="fontS font-gray-20 single-img">
-
+		<%= descrption %>
       </div>
     </section>
   </script>
   <script>
     mui.plusReady(function() {
+    	
     	  //退回刷新
       var oldBack = mui.back;
       mui.back = function() {
@@ -55,7 +56,8 @@
       var param = {
           'method': config.apimethod.msgup,
           'source':config.source,
-          'id': msg_id
+          'id': msg_id,
+          'type':1
       }
       $.dataRequest(param, function(rs) {
       	log(rs);

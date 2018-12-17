@@ -185,9 +185,9 @@
 					<td></td>
 					<td><input name="caseSOR" type="checkbox" value="O">O</td>
 					<td><input name="caseSOR" type="checkbox" value="OS">OS</td>
-					<td><input name="caseSOR" type="checkbox" value="RS">RS</td>
-					<td><input name="caseSOR" type="checkbox" value="ROS">ROS</td>
-					<td><input name="caseSOR" type="checkbox" value="RSO">RSO</td>
+					<td><input name="caseSOR" type="checkbox" value="ORS">OR</td>
+					<td><input name="caseSOR" type="checkbox" value="ROS">ORS</td>
+					<td><input name="caseSOR" type="checkbox" value="RSO">OSR</td>
 				</tr>
 				<tr class='title'>
 					<td></td>
@@ -199,6 +199,11 @@
 				</tr>
 			</table>
           </div>
+          <div class="mui-input-row ">
+            <label>SOR分析：</label>
+      		<input id="sorpl" name="sorpl" type="text" class="mui-input-clear" value="">
+          </div>
+
           <div class="check-box" style="margin-top: 5px;margin-bottom: 5px;">
           	<table id="list" border="1" width="100%" style="padding: 5px 10px;text-align: center;" >
 				<tr class='title'>
@@ -227,7 +232,10 @@
 				</tr>
 			</table>
           </div>
-          
+          <div class="mui-input-row ">
+            <label>FNP分析：</label>
+      		<input id="fnppl" name="fnppl" type="text" class="mui-input-clear" value="">
+          </div>
           <div class="select-box" style="margin-top: 2px;">
           	<label style="padding: 1px 1px;"></label>
           	<table border="1" width="100%" style="padding: 5px 10px;text-align: center;" >
@@ -912,7 +920,7 @@
           
           <div class="row mui-input-row">
           		 <label>案主主诉：</label>
-				<textarea id='caseMasterQs' name="caseMasterQs" class="mui-input-clear" placeholder="案件主诉..."></textarea>
+				<textarea id='caseMasterQs' name="caseMasterQs" class="mui-input-clear" placeholder="案主主诉..."></textarea>
 		  </div>
 		  <div class="row mui-input-row">
           		 <label>家属主诉：</label>
@@ -985,15 +993,27 @@
        var cid = plus.webview.currentWebview().cid;
 			 var caid = plus.webview.currentWebview().caid;
        var userdata = null;
+
        //获取用户信息
-       var param = {
-          'method': config.apimethod.getMemberInfoByTid,
-          'source':config.source,
-          'tid': tid,
-          'cid':cid,
-					'caid':caid
-      }
-      $.dataRequest(param, function(rs) { 
+       if(caid){
+	       var param = {
+	          'method': config.apimethod.getMemberInfoByTid,
+	          'source':config.source,
+	          'tid': tid,
+	          'cid':cid,
+			  'caid':caid
+	      }
+      	} else{
+       		var param = {
+	          'method': config.apimethod.getMemberInfoByTid,
+	          'source':config.source,
+	          'tid': tid,
+	          'cid':cid,
+	      }
+       }
+	 
+      $.dataRequest(param, function(rs) {
+
       	userdata = rs;
       	document.getElementById("truename").value = rs.user.nickname;
       	document.getElementById("sex").value = rs.user.sex;
@@ -1116,12 +1136,12 @@
 				$('#ATotal').text(data['atr']['Total']);
 				$('#AAverage').text(data['atr']['avg']);
 				
-				$('#_2AAvl_A2vl').val(data['_2atr']['_2AAvl_A2vl']);
-				$('#_2ABvl_A2vl').val(data['_2atr']['_2ABvl_A2vl']);
-				$('#_2ACvl_A2vl').val(data['_2atr']['_2ACvl_A2vl']);
-				$('#_2ADvl_A2vl').val(data['_2atr']['_2ADvl_A2vl']);
-				$('#_2AEvl_A2vl').val(data['_2atr']['_2AEvl_A2vl']);
-				$('#_2AFvl_A2vl').val(data['_2atr']['_2AFvl_A2vl']);
+				$('#_2AAvl_A2vl').val(data['_2atr']['_2AAvl_2Avl']);
+				$('#_2ABvl_A2vl').val(data['_2atr']['_2ABvl_2Avl']);
+				$('#_2ACvl_A2vl').val(data['_2atr']['_2ACvl_2Avl']);
+				$('#_2ADvl_A2vl').val(data['_2atr']['_2ADvl_2Avl']);
+				$('#_2AEvl_A2vl').val(data['_2atr']['_2AEvl_2Avl']);
+				$('#_2AFvl_A2vl').val(data['_2atr']['_2AFvl_2Avl']);
 				$('#_2ATotal').text(data['_2atr']['Total']);
 				$('#_2AAverage').text(data['_2atr']['avg']);
 				
@@ -1179,6 +1199,8 @@
 				$('#caseResult').val(data['caseResult']);
 				$('#caseStreng').val(data['caseStreng']);
 				$('#caseMark').val(data['caseMark']);
+				$('#sorpl').val(data['sorpl']);
+				$('#fnppl').val(data['fnppl']);
 				
 				var caseS = data.caseS;				
 				for(var i=0;i<caseS.length;i++){

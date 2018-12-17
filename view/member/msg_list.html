@@ -50,7 +50,7 @@
     <script src="../../js/app.js"></script>
     <script type="text/html" id="msg_list">
       <% if(list != null){ %>
-        <% for(var i=0; i<list.length; i++) { %>
+        <% for(var i in list) { %>
         <li class="mui-table-view-cell action-webview" data-webview="_www/view/member/msg_detail.html" data-webparam = '{"msg_id":<%= list[i].id %>}'>
           <div class="box-display">
             <div class="box-item-flex1">
@@ -84,7 +84,7 @@
 	        		if(rs[1]){
 	        			ret.list = rs[1];
 	        		}
-//	        		log(ret);return;
+	        		log(ret);
 	        		//订单消息
 	        		var widgets = template('msg_list', ret);
             		$('.msg-list').append(widgets);

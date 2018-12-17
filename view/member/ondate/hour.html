@@ -68,6 +68,10 @@
 			  
 			  
 		}
+		.enble{
+			background: #4CD964!important;
+			color: #fff!important;
+		}
     </style>
   </head>
 
@@ -159,7 +163,7 @@
 			<p>批量设置</p>
 			<div class="time-slots flex-box">
 				<% for(var i in timebt) { %>
-					<a data-val="<%= i%>"  class="item <%if (timebt[i].s=='3'){%>on<%}%><%if (timebt[i].s=='0'){%>enble<%}%>"
+					<a data-val="<%= i%>"  class="item <%if (timebt[i].s=='3'){%>on<%}%><%if (timebt[i].s=='0'){%> enble<%}%>"
 						><%= i%></a>
 				<% }%>
 				<!--<a class="item">0:00-6:00</a>
@@ -248,11 +252,10 @@
 	      log(param); 
 	      
 	      $.dataRequest(param, function(rs) {
-	      	log(rs)
 	      	var widgets = template('container_list', rs);
         		$('.container').append(widgets);
         		mui('.container').on('tap','.set-btn',function(){
-//	      		if(!$(this).hasClass('disabled')&&!$(this).hasClass('filled')&&!$(this).hasClass('mui-btn-green')){
+//	      		if(!$(this).hasClass('disabled')&&!$(this).hasClass(]////////'filled')&&!$(this).hasClass('mui-btn-green')){
 	      		if($(this).hasClass('unable')){
 	      			var hour = $(this).data('val');
 	      			var dayn = new Date(curdate);
@@ -315,7 +318,8 @@
 		      	var dayn = new Date(curdate);
 	  			var days = dayn.getFullYear()+'-'+(dayn.getMonth()+1)+'-'+dayn.getDate();
 	  			var rangetm = $(this).data('val');
-	  			if(!$(this).hasClass('unable')){//设置可预约
+	  			if(!$(this).hasClass('unable')&&!$(this).hasClass('on')){//设置可预约
+
 	  				var param = {
 				          'method': config.apimethod.setallcalenda,
 				          'account': state.token,
@@ -323,7 +327,7 @@
 				          'range':rangetm,
 				          'source':config.source
 				      }
-
+						log(param)
 				      $.dataRequest(param, function(rs) {
 				      	mui.toast('批量预约设置成功')
 			        		setTimeout(function(){
@@ -332,9 +336,25 @@
 			        		},1000);
 				      })
 	  			}else{
+	  				
 	  				if($(this).hasClass('on')){//取消
-	  					
-	  					console.log('暂不能取消')
+
+	  					var param = {
+				          'method': config.apimethod.cancleallcalenda,
+				          'account': state.token,
+				          'day': days,
+				          'range':rangetm,
+				          'source':config.source
+				      }
+						log(param)
+				      $.dataRequest(param, function(rs) {
+				      	mui.toast('批量取消设置成功')
+			        		setTimeout(function(){
+				          	var ws = plus.webview.currentWebview();
+				          	plus.webview.close(ws,'slide-out-bottom');
+			        		},1000);
+				      })
+//	  					console.log('暂不能取消')
 	  				}
 	  			}
 	  			

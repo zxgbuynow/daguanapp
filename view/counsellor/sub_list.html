@@ -50,12 +50,12 @@
 					</div>
 					<% if($getDateDiff(list[i].end_time)){%>
 						<p class="time flex-g1"><span><%= $getDateDiff(list[i].start_time)%></span></p>
-						<div class="mui-media-object flex-g1 connect-options">
+						<div class="mui-media-object flex-g1 connect-options action-webview" data-webview="_www/view/msg/wechat.html" data-webparam = '{"jid":"2", "reciveid":"<%= list[i].user.id %>", "account":"<%= list[i].user.username %>", "username":"<%= list[i].user.nickname %>","reciveavar":"<%= $add_server(list[i].user.avar) %>" }'>
 							<span class="btn-connect-pink">与他沟通</span>
 						</div>
 					<%}else{%>
 			        		<p class="time flex-g1"><span>完成</span></p>
-						<div class="mui-media-object flex-g1 connect-options">
+						<div class="mui-media-object flex-g1 connect-options action-webview" data-webview="_www/view/msg/wechat.html" data-webparam = '{"jid":"2", "reciveid":"<%= list[i].user.id %>", "account":"<%= list[i].user.username %>", "username":"<%= list[i].user.nickname %>","reciveavar":"<%= $add_server(list[i].user.avar) %>" }'>
 							<span class="btn-connect-pink">与他沟通</span>
 						</div>
 		        		<%}%> 
@@ -92,12 +92,13 @@
       }
       mui.plusReady(function() {
         $.dataRequest(param, function(rs) { 
-        	console.log('------------')
+//      	console.log('------------') 
         	log(rs)
         	if(rs.list.length==0){
             $('.calendar-list').append('<li class="mui-table-view-cell">亲，暂无数据～</li>');
         	}else{
         		var widgets = template('calendar_list', rs);
+//      		console.log(widgets)
             $('.calendar-list').append(widgets);
         	}
         		

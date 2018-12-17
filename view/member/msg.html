@@ -65,19 +65,28 @@
 	  		//msg
 	  		var state = app.getState();
 		  	var param = {
-	            'method': config.apimethod.msg,
+	            'method': config.apimethod.noticemsg,
 	            'source':config.source,
 	            'account':state.token
 	       }
+		  	
 	        $.dataRequest(param, function(rs) {
+	        	console.log('----')
+	        	log(rs);
 	        		//订单消息
-	        		if (rs['1']) {
+	        		if (rs['0']) {
 	        			$('.msg-order-badge').removeClass('mui-hidden')
 	        		}
-	        		if (rs['0']) {
+	        		if (rs['1']) {
 	        			$('.msg-sys-badge').removeClass('mui-hidden')
 	        		}
 	        })
+	        var oldBack = mui.back;
+		      mui.back = function() {
+		      	var fw = plus.webview.getWebviewById('_www/view/member/member.html');
+		      	fw.reload();
+		        oldBack();
+		      };
        })
     </script>
   </body>

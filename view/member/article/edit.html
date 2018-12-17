@@ -85,9 +85,9 @@
     <script src="../../../config.js"></script>
     <script src="../../../js/app.js"></script>
 	<script type="text/html" id="cate_list">
-		 <option value="" selected="selected">请选择分类</option>
-    		<% for(var i in list) { %>	
-    			<option value="<%= list[i].id%>" ><%= list[i].title %></option>
+
+    		<% for(var i in data) { %>	
+    			<option value="<%= data[i].id%>" ><%= data[i].title %></option>
       	<% } %>
     </script>
     <script>
@@ -96,10 +96,11 @@
         var article_id = plus.webview.currentWebview().article_id;
         //分类 
 	  	var cparam = {
-            'method': config.apimethod.category,
+            'method': config.apimethod.articalcate,
             'source':config.source
        }
        $.dataRequest(cparam, function(rs) {
+       		log(rs)
        		var widgets = template('cate_list', rs);
             $('.cate-list').append(widgets);
             //祥情 
@@ -141,22 +142,24 @@
           }
 		 if(plus.storage.getItem('articlepic')){
 		 	var param = {
-	              'method': config.apimethod.articleadd,
+	              'method': config.apimethod.articleedit,
 		          'source':config.source,
 		          'account': state.token,
 		          'title':$("#titleval").val(),
 		          'cid':$("#cate").val(),
 		          'description':$("#description").val(),
 		          'content':$("#content").val(),
+		          'aid':article_id,
 		          'cover':plus.storage.getItem('articlepic')
 	          }
 		 }else{
 		 	var param = {
-              'method': config.apimethod.articleadd,
+              'method': config.apimethod.articleedit,
 	          'source':config.source,
 	          'account': state.token,
 	          'title':$("#titleval").val(),
 	          'cid':$("#cate").val(),
+	          'aid':article_id,
 	          'description':$("#description").val(),
 	          'content':$("#content").val(),
           }

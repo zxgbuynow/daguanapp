@@ -63,17 +63,22 @@
             'source':config.source,
             'avar': $('#image-1').attr('vase')
         }
-        log(param)
         plus.nativeUI.showWaiting();
         $.dataRequestpost(param, function(rs) {
           var data = rs.data;
+          	var state = app.getState();
+			    state.avar = config.imgser+rs.avar;
+			    app.setState(state);
             mui.toast('更新成功');
             plus.nativeUI.closeWaiting();
-               var parent = plus.webview.getWebviewById('_www/view/member/infomanager.html');
-               parent.reload();
-               parent.onloaded = function(){
-                 mui.back();
-               }
+            setTimeout(function(){
+            		var parent = plus.webview.getWebviewById('_www/view/member/infomanager.html');
+	               parent.reload();
+	               parent.onloaded = function(){
+	                 mui.back();
+	               }
+            },500)
+               
         });
       }, false)
      }) 

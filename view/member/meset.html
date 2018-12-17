@@ -184,8 +184,9 @@
           'id': state.token,
           'source':config.source
       }
+      log(param)
       $.dataRequest(param, function(rs) {
-      	
+    
 //    	log(rs)
       	 var widgets = template('meset_list', rs);
 	        	$('.meset-box').append(widgets); 

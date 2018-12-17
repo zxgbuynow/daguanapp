@@ -242,7 +242,11 @@
         $('.counsellor-homepage-content').append(widgets);
         
         var desc = rs.describe
-        $('.describe').html(desc); 
+        if(desc){
+        		var reg = new RegExp( '/uploads/images' , "g" )
+			var newstr = desc.replace( reg , config.imgser+'uploads/images' );
+	        $('.describe').html(newstr);
+        }
         var intro = rs.intro
         $('.intro').html(intro); 
         

@@ -239,23 +239,11 @@
       	<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
           <div id="scroll1" class="mui-scroll-wrapper advice-list">
             <div class="mui-scroll " data-count="0" data-total="">
-              <div class="mui-loading">
-								<div class="mui-spinner">
-								</div>
-              </div>
-							<ul class="mui-table-view redpackets-list " data-type="all">
-								<li class="mui-table-view-cell mui-media no-bottom-bd">
-									<div class="box-flex">
-										<div class="mui-media-body flex-g2">
-											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
-											<p class="current-progress-content">当前进度: 1/1 <span><i>￥</i>30.00</span></p>
-											<p class='mui-ellipsis time-txt'>2018-10-25</p>
-										</div>
-										<div class="mui-media-object">
-											<span class="bg">与他沟通</span>
-										</div>
-									</div>
-								</li>
+			  <ul class="mui-table-view redpackets-list " data-type="all">
+				<div class="mui-loading">
+					<div class="mui-spinner">
+					</div>
+	            </div>			
               </ul>
             </div>
           </div>
@@ -264,24 +252,12 @@
         <div id="item2mobile" class="mui-slider-item mui-control-content ">
           <div id="scroll2" class="mui-scroll-wrapper advice-list">
             <div class="mui-scroll" data-count="1" data-total="">
-							<div class="mui-loading">
+							
+              <ul class="mui-table-view redpackets-list " data-type="0">
+						<div class="mui-loading">
 								<div class="mui-spinner">
 								</div>
-							</div>
-              <ul class="mui-table-view redpackets-list " data-type="0">
-								<li class="mui-table-view-cell mui-media no-bottom-bd">
-									<div class="box-flex">
-										<div class="mui-media-body flex-g2">
-											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
-											<p class="current-progress-content">当前进度: 1/1 <span><i>￥</i>30.00</span></p>
-											<p class='mui-ellipsis time-txt'>2018-10-25</p>
-										</div>
-										<div class="mui-media-object">
-											<span class="bg">与他沟通</span>
-											<span class="bd">取消咨询</span>
-										</div>
-									</div>
-								</li>
+							</div>		
               </ul>
             </div>
           </div>
@@ -289,23 +265,12 @@
         <div id="item3mobile" class="mui-slider-item mui-control-content">
           <div id="scroll3" class="mui-scroll-wrapper advice-list">
             <div class="mui-scroll" data-count="1" data-total="">
-							<div class="mui-loading">
+							
+              <ul class="mui-table-view redpackets-list " data-type="1">
+					<div class="mui-loading">
 								<div class="mui-spinner">
 								</div>
-							</div>
-              <ul class="mui-table-view redpackets-list " data-type="1">
-								<li class="mui-table-view-cell mui-media no-bottom-bd">
-									<div class="box-flex">
-										<div class="mui-media-body flex-g2">
-											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
-											<p class="current-progress-content">当前进度: 1/1 <span><i>￥</i>30.00</span></p>
-											<p class='mui-ellipsis time-txt'>2018-10-25</p>
-										</div>
-										<div class="mui-media-object">
-											<span>已取消</span>
-										</div>
-									</div>
-								</li>
+							</div>			
               </ul>
             </div>
           </div>
@@ -313,45 +278,12 @@
         <div id="item4mobile" class="mui-slider-item mui-control-content ">
           <div id="scroll4" class="mui-scroll-wrapper advice-list">
             <div class="mui-scroll " data-count="1" data-total="">
-							<div class="mui-loading">
+							
+              	<ul class="mui-table-view redpackets-list " data-type="4">
+					<div class="mui-loading">
 								<div class="mui-spinner">
 								</div>
 							</div>
-              <ul class="mui-table-view redpackets-list " data-type="4">
-								<li class="mui-table-view-cell mui-media no-bottom-bd">
-									<div class="box-flex">
-										<div class="mui-media-body flex-g2">
-											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
-											<p class='mui-ellipsis time-txt'>2018-10-25</p>
-										</div>
-										<div class="mui-media-object">
-											<span class="bg min">填写案例</span>
-											<span class="bd max">查看修改案例</span>
-										</div>
-									</div>
-								</li>
-								<li class="mui-table-view-cell mui-media no-bottom-bd">
-									<div class="box-flex">
-										<div class="mui-media-body flex-g2">
-											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
-											<p class='mui-ellipsis time-txt'>2018-10-25</p>
-										</div>
-										<div class="mui-media-object">
-											<span class="bg min">填写案例</span>
-										</div>
-									</div>
-								</li>
-								<li class="mui-table-view-cell mui-media no-bottom-bd">
-									<div class="box-flex">
-										<div class="mui-media-body flex-g2">
-											<h3 class='mui-ellipsis'>涂预约《大观精油芳香体验沙龙》</h3>
-											<p class='mui-ellipsis time-txt'>2018-10-25</p>
-										</div>
-										<div class="mui-media-object">
-											<span class="bd max">查看修改案例</span>
-										</div>
-									</div>
-								</li>
               </ul>
             </div>
           </div>
@@ -369,49 +301,47 @@
 	<script type="text/html" id="trade_list">
 		<%if(sorce=='trade'){%>
 			<% for(var i in list) { %>
-			<li class="mui-table-view-cell mui-media no-bottom-bd action-webview " data-webview="_www/view/msg/chat.html" data-webparam = '{"jid":"3","reciveid":"<%= list[i].memberid %>", "account":"<%= list[i].mobile %>", "username":"<%= list[i].nickname %>","reciveavar":"<%= $add_server(list[i].cavar) %>" }'>
-				<a href="javascript:;" class="cell-flex">
-					<div class="mui-media-body flex-g2">
-						<h3 class='mui-ellipsis'><%= list[i].title%></h3>
-						<p class="current-progress-content">当前进度: 0/1 <span><i>￥</i><%= list[i].payment%></span></p>
-						<p class='mui-ellipsis time-txt'<%= list[i].st%></p>
+				<li class="mui-table-view-cell mui-media no-bottom-bd action-webview " data-webview="_www/view/msg/wechat.html" data-webparam = '{"jid":"3","reciveid":"<%= list[i].memberid %>", "account":"<%= list[i].mobile %>", "username":"<%= list[i].member %>","reciveavar":"<%= $add_server(list[i].cavar) %>" }'>
+					<div class="box-flex">
+						<div class="mui-media-body flex-g2">
+							<h3 class='mui-ellipsis'><%= list[i].title%></h3>
+							<p class="current-progress-content"><%= list[i].process%><span><i>￥</i><%= list[i].payment%></span></p>
+							<p class='mui-ellipsis time-txt'><%= list[i].st%></p>
+						</div>
+						<div class="mui-media-object">
+							<span class="bg">与他沟通</span>
+						</div>
 					</div>
-					<div class="mui-media-object">
-						<span class="bg">与他沟通</span>
-					</div>
-				</a>
-			</li>
+				</li>
 			<%}%>
 		<%}else{%>
         <% for(var i in list) { %>
-        		<li class="mui-table-view-cell mui-media no-bottom-bd">
-				<a href="javascript:;" class="cell-flex">
-					<div class="mui-media-body flex-g2">
-						<h3 class='mui-ellipsis'><%= list[i].title%></h3>
-						<p class='mui-ellipsis time-txt'><%= list[i].st%></p>
-					</div>
-					<!--<div class="mui-media-object flex-g1">
-						<span class="mui-ellipsis address-txt">上海</span>
-					</div>-->
-					<div class="">
-						<%if (list[i].status=='0'){%>
-						<span class="bg action-webview " data-webview="_www/view/msg/chat.html" data-webparam = '{"jid":"3","reciveid":"<%= list[i].memberid %>", "account":"<%= list[i].mobile %>", "username":"<%= list[i].nickname %>","reciveavar":"<%= $add_server(list[i].cavar) %>" }'>与他沟通</span>
+        	<li class="mui-table-view-cell mui-media no-bottom-bd">
+			<div class="box-flex">
+				<div class="mui-media-body flex-g2">
+					<h3 class='mui-ellipsis'><%= list[i].title%></h3>
+					<p class='mui-ellipsis time-txt'><%= list[i].st%></p>
+				</div>
+				<div class="mui-media-object">
+					<%if (list[i].status=='0'){%>
+						<span class="bg action-webview " data-webview="_www/view/msg/wechat.html" data-webparam = '{"jid":"3","reciveid":"<%= list[i].memberid %>", "account":"<%= list[i].mobile %>", "username":"<%= list[i].member %>","reciveavar":"<%= $add_server(list[i].cavar) %>" }'>与他沟通</span>
 						<span class="bd canceled" data-cid="<%= list[i].id %>"  data-ondate="<%= list[i].start_time %>">取消咨询</span>
-						<% } %>
-						<%if (list[i].status=='1'||list[i].status=='2'){%>
-							<%if (list[i].status=='2'){%>
-								<span class="bd etcase action-webview" data-webview="_www/view/counsellor/case.html" data-webparam = '{"caid":"<%= list[i].caid %>","cid":"<%= list[i].id %>", "tid":"<%= list[i].tid %>" }' >修改案例</span>
-							<%}else{%>
+					<% } %>
+					<%if (list[i].status=='1'||list[i].status=='2'){%>
+						<%if (list[i].status=='2'){%>
+							<span class="bd etcase action-webview" data-webview="_www/view/counsellor/case.html" data-webparam = '{"caid":"<%= list[i].caid %>","cid":"<%= list[i].id %>", "tid":"<%= list[i].tid %>" }' >修改案例</span>
+						<%}else{%>
 							<span class="bd gocase action-webview" data-webview="_www/view/counsellor/case.html" data-webparam = '{"cid":"<%= list[i].id %>", "tid":"<%= list[i].tid %>" }'>填写案例</span>
-							<%}%>
-						<% } %>
-						
-						<%if (list[i].status=='4'){%>
-							<span class="bd ">已取消</span>
-						<% } %>
-					</div>
-				</a>
-			</li>
+						<%}%>
+					<% } %>
+					
+					<%if (list[i].status=='4'){%>
+						<span class="bd ">已取消</span>
+					<% } %>
+				</div>
+			</div>
+		</li>
+        		
       <% } %>
        <% } %>
     </script>
@@ -448,7 +378,7 @@
       mui.plusReady(function() {
         var state = app.getState();
         var param = {
-          'method': config.apimethod.recordlist,  
+          'method': config.apimethod.recordlist, 
           'account': state.token,
           'source':config.source,
           'status': 'all',
@@ -461,6 +391,7 @@
         //canceled
         mui('#slider').on('tap','.canceled',function(){
         		var ondate = $(this).data('ondate');
+        		var cid = $(this).data('cid');
         		mui.confirm('取消预约', ['确认', '关闭'], function(f) {
 						if (f.index == 0) {
 							//是否已过时间
@@ -474,6 +405,7 @@
 															'cid': cid,
 															'source':config.source
 												}
+							log(param)
 												 $.dataRequest(param, function(rs) {
 													plus.webview.currentWebview().reload(true)
 												 })

@@ -132,7 +132,7 @@
         <span class="mui-tab-label">首页</span>
       </a>
       <a class="bbc-tab-item bbc-active" >
-        <span class="mui-icon bbc-icon bbc-icon-package"><span class="mui-badge mui-badge-danger mui-badge-point"></span></span>
+        <span class="mui-icon bbc-icon bbc-icon-package"><i class="mui-badge mui-badge-danger mui-hidden"  id="advice-count" style="padding: 5px 5px;    margin-left: -8px;"></i></span>
         <span class="mui-tab-label">工作台</span>
       </a>
       <a class="bbc-tab-item" data-webview="_www/view/clac/index.html">
@@ -140,7 +140,7 @@
         <span class="mui-tab-label">课程/活动</span>
       </a>
       <a class="bbc-tab-item" data-webview="_www/view/msg/index.html">
-        <span class="mui-icon bbc-icon bbc-icon-message"><span class="mui-badge mui-badge-danger mui-hidden" id="msg-count"></span></span>
+        <span class="mui-icon bbc-icon bbc-icon-message"><span class="mui-badge mui-badge-danger mui-hidden"  style="display: none;" id="msg-count"></span></span>
         <span class="mui-tab-label">消息</span>
       </a>
       <a class="bbc-tab-item" data-webview="_www/view/member/member.html">
@@ -157,7 +157,7 @@
     <script src="../../js/MCalendar.js"></script>
     <script type="text/html" id="calendar_list">
     	<% if(list != null){ %>
-		<div class="counsellor-item-list">
+		<div class="counsellor-item-list calendar-list">
 			<ul class="mui-table-view">
 				<% for(var i=0; i<list.length; i++) { %>
 				<li class="mui-table-view-cell mui-media">
@@ -165,7 +165,7 @@
 						<a  class="cell-flex">
 							<h3 class="mui-ellipsis flex-g2"><%= list[i].title%></h3>
 							<p class="time flex-g1"><span><%= $getDateDiff(list[i].start_time)%></span></p>
-							<div class="mui-media-object flex-g1 connect-options">
+							<div class="mui-media-object flex-g1 connect-options action-webview" data-webview="_www/view/msg/wechat.html" data-webparam = '{"jid":"2", "reciveid":"<%= list[i].user.id %>", "account":"<%= list[i].user.username %>", "username":"<%= list[i].user.nickname %>","reciveavar":"<%= $add_server(list[i].user.avar) %>" }'>
 								<span class="btn-connect-pink">与他沟通</span>
 							</div>
 						</a>
@@ -173,7 +173,7 @@
 			        			<a  class="cell-flex">
 							<h3 class="mui-ellipsis flex-g2"><%= list[i].title%></h3>
 							<p class="time flex-g1"><span>完成</span></p>
-							<div class="mui-media-object flex-g1 connect-options">
+							<div class="mui-media-object flex-g1 connect-options action-webview" data-webview="_www/view/msg/wechat.html" data-webparam = '{"jid":"2", "reciveid":"<%= list[i].user.id %>", "account":"<%= list[i].user.username %>", "username":"<%= list[i].user.nickname %>","reciveavar":"<%= $add_server(list[i].user.avar) %>" }'>
 								<span class="btn-connect-pink">与他沟通</span>
 							</div>
 						</a>

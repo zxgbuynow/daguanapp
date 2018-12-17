@@ -44,8 +44,8 @@
             <div class="panel"></div>
             <div id="chatArea" class="box chat">
                 <div class="box_hd"></div>
-                <div class="box_bd" id="messageList">
-                    <div class="message me">
+                <div class="box_bd" id="messageList" >
+                    <!--<div class="message me">
 						<div class="msg-time-content"><span class="time">10:10:08</span></div>
                         <img class="avatar" src="../../img/face-new.png" />
                         <div class="content">
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
  
                 </div>
             </div>
@@ -114,7 +114,7 @@
 	<div class="box_ft">
 		
 		<div class="box_ft_hd">
-			<a href="javascript:;" class="iconfont icon-yuyindianhua- icon-msg-tel" id="web_wechat_tel"></a>
+			<a  class="iconfont icon-yuyindianhua- icon-msg-tel" id="web_wechat_tel"></a>
 			<div class="eaitWrap">
 				<pre id="editArea" class="editArea" contenteditable="true" style="-webkit-user-select:text"></pre>
 			</div>
@@ -129,7 +129,7 @@
 				<div class="msg-time-content"><span class="time"><%= list[i].times %></span></div>
 	            <img class="avatar" src="<%= $add_server(list[i].sdavar) %>" onerror="Javascript:this.src='../../img/widgets_02_19.png' "/>
 	            <div class="content">
-	                <div class="bubble bubble_primary <%if(list[i].isme){%>right<%}else{%>left<%}%> ">
+	                <div class="bubble  <%if(list[i].isme){%> bubble_primary right<%}else{%> bubble_default left<%}%> ">
 	                    <div class="bubble_cont">
 	                        <div class="plain">
 	                            <pre><%= list[i].msg %></pre>
@@ -166,7 +166,8 @@
 		var reciveavar = plus.webview.currentWebview().reciveavar;//用户头像
 	    var _editArea = $('#editArea');
 	 	$('.mui-title').html('与'+username+'聊天')
-	 	$('.hdavatar').html(reciveavar) 
+	 	$('.hdavatar').attr('src',reciveavar) 
+	 	log(state)
 	 	//历史记录
 	 	var param = {
 	          'method': config.apimethod.hxmsgtwo,
@@ -180,6 +181,7 @@
 	      	var widgets = template('msg_list', rs);
 //	      	console.log(widgets)
 	    		$('#messageList').append(widgets);
+	    		scrollBottom()
 	      })
 	      //更新未读
 	      var mparam = {
@@ -249,13 +251,20 @@
 		 
 		 
 		    function sendMsg(type,who,str) {
+		    		//获得是否有网
+		    		if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE){
+		    			mui.toast("网络异常，请检查网络设置！");
+					return false;
+		    		}
+		    		var myDate = new Date();//获取系统当前时间
+		    		var sdtime = myDate.getHours() +':'+myDate.getMinutes()+':'+myDate.getSeconds();
 		    		if(type=='receiver'){
-		    			var _html='<div class="message "><div class="msg-time-content"><span class="time">10:12:20</span></div>'
+		    			var _html='<div class="message "><div class="msg-time-content"><span class="time">'+sdtime+'</span></div>'
 		                +'<img class="avatar" src="'+reciveavar+'" /><div class="content">'
 		                +'<div class="bubble bubble_primary left">'
 		                +'<div class="bubble_cont"><div class="plain"><pre>'+str+'</pre></div><em>◆</em><span>◆</span></div></div></div></div>';
 		    		}else{
-		    			var _html='<div class="message me"><div class="msg-time-content"><span class="time">10:12:20</span></div>'
+		    			var _html='<div class="message me"><div class="msg-time-content"><span class="time">'+sdtime+'</span></div>'
 		                +'<img class="avatar" src="'+state.avar+'" /><div class="content">'
 		                +'<div class="bubble bubble_primary right">'
 		                +'<div class="bubble_cont"><div class="plain"><pre>'+str+'</pre></div><em>◆</em><span>◆</span></div></div></div></div>';
@@ -294,6 +303,13 @@
 		    function resetMessageArea() {
 		        $('#messageList').animate({ 'scrollTop': 999 }, 500);
 		    }
+		     function scrollBottom() {
+		    		var scrollHeight = $(document).height();//文档高度
+//				$('#messageList').scrollTop(scrollHeight); 
+				setTimeout(function () {
+			      ($('#messageList').children("div:last-child")[0]).scrollIntoView();
+			    },100);
+		    } 
 		    //sid rid msg  
 		    function setMsg(who,msg){
 		    		
@@ -350,7 +366,40 @@
 						
 					});
 					
-					 
+					 $('#web_wechat_tel').click(function () {
+					      	//判断是否
+//							var param = {
+//	                              'method': config.apimethod.startondate,
+//	                              'account': state.token,
+//	                              'source':config.source
+//	                          }
+//	
+//	                         $.dataRequest(param, function(rs) {
+//	                         	if(!rs){
+//	                         		mui.toast('预约未开始，不能发起语音咨询')
+//	                         		return false;
+//	                         	}
+	//								webscall(state.account, usernm);
+	//							plus.webview.open('http://103.20.248.251/perl/phone?cid='+state.account+'&did='+usernm+'&pbx=P000000001111&username=dgapp&password=hope9995');
+								var xhr=new plus.net.XMLHttpRequest();
+								xhr.onreadystatechange=function(){
+								    switch ( xhr.readyState ) {
+										case 4:
+										if ( xhr.status == 200 ) {
+											mui.toast( "发起成功,请等待电话" );
+										} else {
+											mui.toast( "发起失败" );
+										}
+										break;
+									default :
+								
+								 	};
+								}
+								xhr.open( 'POST', 'http://103.20.248.251/perl/phone' );
+								xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+								xhr.send('cid='+state.account+'&did='+account+'&pbx=P000000001111&username=dgapp&password=hope9995');
+//							})
+					  });
 					// 单聊发送文本消息
 					var sendPrivateText = function (massge,to) {
 						console.log(massge)
@@ -375,6 +424,18 @@
 				},1000)
 				
 				
+			}
+		 	
+		 	var old_back = mui.back;
+			mui.back = function() {
+				//会话列表过来的
+				if(userjid==1){
+					var pwv = plus.webview.getWebviewById('_www/view/msg/index.html');
+//			  		pwv.reload();
+			  		mui.fire(pwv,'refresh'); 
+				}
+			  
+			  	 old_back();
 			}
 	    
 	});
