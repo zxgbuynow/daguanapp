@@ -205,6 +205,9 @@
 		                $('#btn_send').hide();
 		            }
 		        }, 200);
+				setTimeout(function(){
+					$('#messageList').scrollTop(99999)
+				},200)
 		    });
 		 
 		    $('#editArea').blur(function () {
